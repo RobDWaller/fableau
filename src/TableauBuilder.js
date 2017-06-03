@@ -1,11 +1,12 @@
 "use strict"
 
-import Post from '../entity/Post.js';
-import User from '../entity/User.js';
-import Ajax from '../service/Ajax.js';
-import PostColumns from './columns/PostColumns.js';
-import UserColumns from './columns/UserColumns.js';
-import Table from './Table.js';
+import Post from './mapper/Post.js';
+import User from './mapper/User.js';
+import Ajax from './helper/Ajax.js';
+import Facebook from './service/Facebook.js';
+import PostColumns from './tableau/columns/PostColumns.js';
+import UserColumns from './tableau/columns/UserColumns.js';
+import Table from './tableau/Table.js';
 
 class TableauBuilder
 {
@@ -18,9 +19,9 @@ class TableauBuilder
     {
         var tableauConnector = this.tableau.makeConnector();
 
-        var postTable = new Table('posts', 'Posts Data', new PostColumns(this.tableau));
+        var postTable = new Table('posts', 'Posts Data', new PostColumns(this.tableau.dataTypeEnum));
 
-        var userTable = new Table('users', 'User Data', new UserColumns(this.tableau));
+        var userTable = new Table('users', 'User Data', new UserColumns(this.tableau.dataTypeEnum));
 
         tableauConnector.getSchema = function(schemaCallback){
             schemaCallback([postTable.getTable(), userTable.getTable()]);

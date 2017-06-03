@@ -4,7 +4,10 @@
     "description": "A Tableau Facebook Web Data Connector",
     "main": "index.js",
     "keywords": [
-        "tableau", "facebook", "WDC", "Web Data Connector"
+        "tableau",
+        "facebook",
+        "WDC",
+        "Web Data Connector"
     ],
     "scripts": {
         "webpack": "webpack --progress --hide-modules --config=./node_modules/laravel-mix/setup/webpack.config.js",
@@ -13,6 +16,8 @@
     "author": "Rob Waller",
     "license": "MIT",
     "dependencies": {
-        "laravel-mix": "^0.12.0"
+        "chai": "^4.0.0",
+        "laravel-mix": "^0.12.0",
+        "mocha": "^3.4.2"
     }
 }

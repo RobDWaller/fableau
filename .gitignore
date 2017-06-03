@@ -4,3 +4,4 @@ Vagrantfile
 mix-manifest.json
 yarn.lock
 public/assets
+npm-debug*

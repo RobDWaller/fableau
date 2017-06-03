@@ -1,4 +1,4 @@
-import TableauBuilder from './tableau/TableauBuilder.js';
+import TableauBuilder from './TableauBuilder.js';
 
 (function() {
 

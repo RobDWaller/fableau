@@ -2,20 +2,20 @@
 
 class PostColumns
 {
-    constructor(tableau)
+    constructor(tableauDataTypeObject)
     {
-        this.tableau = tableau;
+        this.tableauDataTypeObject = tableauDataTypeObject;
     }
 
     getColumns()
     {
         return [{
             id: "id",
-            dataType: this.tableau.dataTypeEnum.string
+            dataType: this.tableauDataTypeObject.int
         }, {
             id: "title",
             alias: "facebook post title",
-            dataType: this.tableau.dataTypeEnum.string
+            dataType: this.tableauDataTypeObject.string
         }];
     }
 }

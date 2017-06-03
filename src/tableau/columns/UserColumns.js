@@ -2,20 +2,20 @@
 
 class UserColumns
 {
-    constructor(tableau)
+    constructor(tableauDataTypeObject)
     {
-        this.tableau = tableau;
+        this.tableauDataTypeObject = tableauDataTypeObject;
     }
 
     getColumns()
     {
         return [{
             id: "id",
-            dataType: this.tableau.dataTypeEnum.string
+            dataType: this.tableauDataTypeObject.int
         }, {
             id: "username",
             alias: "facebook username",
-            dataType: this.tableau.dataTypeEnum.string
+            dataType: this.tableauDataTypeObject.string
         }];
     }
 }
