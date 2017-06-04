@@ -10,8 +10,7 @@
         "Web Data Connector"
     ],
     "scripts": {
-        "webpack": "webpack --progress --hide-modules --config=./node_modules/laravel-mix/setup/webpack.config.js",
-        "webpack-prod": "webpack -p --progress --hide-modules --config=./node_modules/laravel-mix/setup/webpack.config.js"
+        "webpack": "webpack --progress --hide-modules --config=./node_modules/laravel-mix/setup/webpack.config.js"
     },
     "author": "Rob Waller",
     "license": "MIT",

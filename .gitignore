@@ -5,3 +5,5 @@ mix-manifest.json
 yarn.lock
 public/assets
 npm-debug*
+.env
+public/tests.html
