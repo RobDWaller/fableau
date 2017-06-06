@@ -1,9 +1,8 @@
 "use strict"
 
-import Post from './mapper/Post.js';
-import User from './mapper/User.js';
 import Ajax from './helper/Ajax.js';
-import FacebookRequests from './service/facebook/FacebookRequests.js';
+import FacebookController from './service/facebook/FacebookController.js';
+import FacebookModel from './service/facebook/FacebookModel.js';
 import PostColumns from './tableau/columns/PostColumns.js';
 import UserColumns from './tableau/columns/UserColumns.js';
 import Table from './tableau/Table.js';
@@ -13,6 +12,11 @@ class TableauBuilder
     constructor(tableau)
     {
         this.tableau = tableau;
+    }
+
+    init()
+    {
+        this.tableau.authType = this.tableau.authTypeEnum.custom;
     }
 
     makeSchema()
@@ -32,16 +36,20 @@ class TableauBuilder
 
     getData(tableauConnector)
     {
-        var facebook = new FacebookRequests(new Ajax());
-
-        tableauConnector.getData = function(table, doneCallback) {
+        tableauConnector.getData = (table, doneCallback) => {
             
+            var facebook = new FacebookController(new FacebookModel(new Ajax()), this.tableau.password);
+
             if (table.tableInfo.id == 'posts') {
-                facebook.getPosts().then((result) => this.processResult(table, doneCallback, result));    
+                facebook.getPosts().then((result) => {
+                    this.processResult(table, doneCallback, result)
+                });    
             }
 
             if (table.tableInfo.id == 'users') {
-                facebook.getUsers().then((result) => this.processResult(table, doneCallback, result));    
+                facebook.getUsers().then((result) => {
+                    this.processResult(table, doneCallback, result)
+                });    
             }
         };
 
@@ -59,6 +67,10 @@ class TableauBuilder
         this.tableau.registerConnector(tableauConnector);
     }
 
+    setPassword(accessToken)
+    {
+        this.tableau.password = accessToken;
+    }
 }
 
 export default TableauBuilder;
