@@ -1,0 +1,19 @@
+@import 'colors';
+@import 'fonts';
+@import 'tableau';
+@import 'facebook';
+
+body {
+    color: lighten($fontColorOne, 20%);
+    font: 75% $textFont;
+    background: $backgroundColor;
+}
+
+.header {
+    width: 640px;
+    margin: 0px auto;
+}
+
+.header__text {
+    font: bold 3em $headerFont;
+}

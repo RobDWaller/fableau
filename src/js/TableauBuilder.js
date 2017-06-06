@@ -3,7 +3,7 @@
 import Post from './mapper/Post.js';
 import User from './mapper/User.js';
 import Ajax from './helper/Ajax.js';
-import Facebook from './service/Facebook.js';
+import FacebookRequests from './service/facebook/FacebookRequests.js';
 import PostColumns from './tableau/columns/PostColumns.js';
 import UserColumns from './tableau/columns/UserColumns.js';
 import Table from './tableau/Table.js';
@@ -32,32 +32,28 @@ class TableauBuilder
 
     getData(tableauConnector)
     {
-        var ajax = new Ajax();
+        var facebook = new FacebookRequests(new Ajax());
 
         tableauConnector.getData = function(table, doneCallback) {
             
             if (table.tableInfo.id == 'posts') {
-                ajax.getData('https://jsonplaceholder.typicode.com/posts').then(function(result){
-                    return new Post(result);
-                }).then(function(result){
-                    table.appendRows(result.getTableauData()); 
-                    doneCallback();
-                });    
+                facebook.getPosts().then((result) => this.processResult(table, doneCallback, result));    
             }
 
             if (table.tableInfo.id == 'users') {
-                ajax.getData('https://jsonplaceholder.typicode.com/users').then(function(result){
-                    return new User(result);
-                }).then(function(result){
-                    table.appendRows(result.getTableauData()); 
-                    doneCallback();
-                });    
+                facebook.getUsers().then((result) => this.processResult(table, doneCallback, result));    
             }
         };
 
         return tableauConnector;
     }
         
+    processResult(table, doneCallback, result)
+    {
+        table.appendRows(result.getTableauData()); 
+        doneCallback();
+    }
+
     registerConnector(tableauConnector)
     {
         this.tableau.registerConnector(tableauConnector);

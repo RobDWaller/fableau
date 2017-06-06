@@ -1,4 +1,4 @@
-import Post from '../src/mapper/Post.js';
+import Post from '../src/js/mapper/Post.js';
 
 var assert = chai.assert;
 
