@@ -10,11 +10,6 @@ class Page
         this.data = data;
     }
 
-    appendData(data)
-    {
-        this.data = this.data.concat(data);
-    }
-
     getTableauData()
     {
         if (!Array.isArray(this.data) || this.data.length === 0) {
@@ -23,8 +18,10 @@ class Page
 
         return this.data.map(function(row) {
             return {
-                'id': row.id,
-                'title': row.title
+                'page_id': row.id,
+                'page_name': row.name,
+                'page_category': row.category,
+                'page_image': `https://graph.facebook.com/${row.id}/picture`
             }
         });
     }

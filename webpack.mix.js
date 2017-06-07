@@ -9,7 +9,7 @@ if (process.env.ENVIRONMENT === 'development') {
         .copy('./node_modules/mocha/mocha.js', './public/assets/tests/mocha.js')
         .copy('./node_modules/chai/chai.js', './public/assets/tests/chai.js')
         .copy('./tests/tests.html', './public/tests.html')
-        .js(['./tests/PostTest.js', './tests/PageTest.js'], './public/assets/tests/tests.js');
+        .js(['./tests/PostTest.js'], './public/assets/tests/tests.js');
 }
 
 if (process.env.ENVIRONMENT === 'production') {

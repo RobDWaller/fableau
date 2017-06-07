@@ -1,8 +1,9 @@
 import Dom from './helper/Dom.js';
 import FacebookAuth from './service/facebook/FacebookAuth.js';
-import FacebookController from './service/facebook/FacebookController.js';
-import FacebookModel from './service/facebook/FacebookModel.js';
+import FacebookRequests from './service/facebook/FacebookRequests.js';
+import FacebookData from './service/facebook/FacebookData.js';
 import Ajax from './helper/Ajax.js';
+import FacebookPageListBuilder from './helper/FacebookPageListBuilder.js';
 import TableauBuilder from './TableauBuilder.js';
 
 var dom = new Dom;
@@ -32,12 +33,11 @@ window.onload = function(){
             dom.addClass("tableau-block", "tableau_connect--show");
             dom.addClass("facebook-block", "facebook_auth--hide");
             tableauBuilder.setPassword(response);
-            var facebookController = new FacebookController(new FacebookModel(new Ajax), response);
+            var facebookRequests = new FacebookRequests(new FacebookData(new Ajax), response);
 
-            facebookController.getPages().then((response) => {
-                console.log('before');
-                console.log(response);
-                console.log('after');
+            facebookRequests.getPages().then((response) => {
+                var facebookPageList = new FacebookPageListBuilder(dom, response.getTableauData());
+                facebookPageList.build();
             });
 
         }, (error) => {

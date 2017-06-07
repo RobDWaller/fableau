@@ -1,8 +1,8 @@
 "use strict"
 
 import Ajax from './helper/Ajax.js';
-import FacebookController from './service/facebook/FacebookController.js';
-import FacebookModel from './service/facebook/FacebookModel.js';
+import FacebookRequests from './service/facebook/FacebookRequests.js';
+import FacebookData from './service/facebook/FacebookData.js';
 import PostColumns from './tableau/columns/PostColumns.js';
 import UserColumns from './tableau/columns/UserColumns.js';
 import Table from './tableau/Table.js';
@@ -38,7 +38,7 @@ class TableauBuilder
     {
         tableauConnector.getData = (table, doneCallback) => {
             
-            var facebook = new FacebookController(new FacebookModel(new Ajax()), this.tableau.password);
+            var facebook = new FacebookRequests(new FacebookData(new Ajax()), this.tableau.password);
 
             if (table.tableInfo.id == 'posts') {
                 facebook.getPosts().then((result) => {

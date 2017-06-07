@@ -2,14 +2,29 @@
 
 class Dom
 {
+    getElementById(idName)
+    {
+        return document.getElementById(idName);
+    }
+
     addClass(idName, className)
     {
-        document.getElementById(idName).classList.add(className);
+        this.getElementById(idName).classList.add(className);
     }
 
     removeClass(idName, className)
     {
-        document.getElementById(idName).classList.remove(className);
+        this.getElementById(idName).classList.remove(className);
+    }
+
+    createElement(element)
+    {
+        return document.createElement(element);
+    }
+
+    createTextNode(text)
+    {
+        return document.createTextNode(text);
     }
 }
 
