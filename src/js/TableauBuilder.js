@@ -1,10 +1,12 @@
 "use strict"
 
+import Dom from './helper/Dom.js';
 import Ajax from './helper/Ajax.js';
+import FacebookPageLoop from './helper/FacebookPageLoop.js';
 import FacebookRequests from './service/facebook/FacebookRequests.js';
 import FacebookData from './service/facebook/FacebookData.js';
 import PostColumns from './tableau/columns/PostColumns.js';
-import UserColumns from './tableau/columns/UserColumns.js';
+import PageImpressionColumns from './tableau/columns/PageImpressionColumns.js';
 import Table from './tableau/Table.js';
 
 class TableauBuilder
@@ -23,12 +25,12 @@ class TableauBuilder
     {
         var tableauConnector = this.tableau.makeConnector();
 
-        var postTable = new Table('posts', 'Posts Data', new PostColumns(this.tableau.dataTypeEnum));
+        var postTable = new Table('posts', 'Posts Meta Data', new PostColumns(this.tableau.dataTypeEnum));
 
-        var userTable = new Table('users', 'User Data', new UserColumns(this.tableau.dataTypeEnum));
+        var pageImpressionsTable = new Table('page_impressions', 'Page Impressions', new PageImpressionColumns(this.tableau.dataTypeEnum));
 
         tableauConnector.getSchema = function(schemaCallback){
-            schemaCallback([postTable.getTable(), userTable.getTable()]);
+            schemaCallback([postTable.getTable(), pageImpressionsTable.getTable()]);
         };
 
         return tableauConnector;
@@ -37,29 +39,47 @@ class TableauBuilder
     getData(tableauConnector)
     {
         tableauConnector.getData = (table, doneCallback) => {
+
+            let facebook = new FacebookRequests(new FacebookData(new Ajax()));
+            facebook.setAccessToken(this.tableau.password);
             
-            var facebook = new FacebookRequests(new FacebookData(new Ajax()), this.tableau.password);
+            let facebookLoop = new FacebookPageLoop(facebook);
+
+            let pageIds = JSON.parse(this.tableau.connectionData);
+
+            facebook.getAccessTokenStatus().then((result) => {
+                if (!result) {
+                    this.tableau.abortForAuth('The Facebook Access Token has expired, please re-authenticate.');
+                }
+            });
 
             if (table.tableInfo.id == 'posts') {
-                facebook.getPosts().then((result) => {
-                    this.processResult(table, doneCallback, result)
-                });    
+                facebookLoop.getPagePosts(pageIds)
+                .then((result) => {
+                    return result.map((post) => {
+                        table.appendRows(post.getTableauData());
+                    });
+                })
+                .then(() => { doneCallback() });
             }
 
-            if (table.tableInfo.id == 'users') {
-                facebook.getUsers().then((result) => {
-                    this.processResult(table, doneCallback, result)
-                });    
+            if (table.tableInfo.id == 'page_impressions') {
+                facebookLoop.getPageImpressions(pageIds)
+                .then((result) => {
+                    return result.map((page) => {
+                        table.appendRows(page.getTableauData());
+                    });
+                })
+                .then(() => { doneCallback() });
             }
         };
 
         return tableauConnector;
     }
-        
-    processResult(table, doneCallback, result)
+
+    processResult(table, result, pageId = null)
     {
-        table.appendRows(result.getTableauData()); 
-        doneCallback();
+        table.appendRows(result.getTableauData(pageId));
     }
 
     registerConnector(tableauConnector)
@@ -70,6 +90,25 @@ class TableauBuilder
     setPassword(accessToken)
     {
         this.tableau.password = accessToken;
+    }
+
+    setConnectionData()
+    {
+        let dom = new Dom;
+
+        let pages = dom.getClass('facebook-page-list__input');
+
+        let pageIds = Array.prototype.filter.call(pages, (item) => {
+            if (item.checked) {
+                return item;
+            }
+        }).map((item) => {
+            return {
+                'page_id': item.value
+            }
+        });
+
+        this.tableau.connectionData = JSON.stringify(pageIds);
     }
 }
 

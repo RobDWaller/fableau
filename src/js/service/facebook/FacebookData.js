@@ -8,7 +8,7 @@ class FacebookData
         this.data = [];
     }
 
-    getData(url)
+    getDataPaginate(url)
     {
         return this.ajax.getData(url).then((result) => {
             
@@ -18,10 +18,21 @@ class FacebookData
              
         }).then((result) => {
             if (typeof(result.paging.next) !== 'undefined' && result.paging.next.length) {
-                return this.getData(result.paging.next);        
+                return this.getDataPaginate(result.paging.next);        
             } else {
                 return this.data;
             }
+        });
+    }
+
+    getData(url)
+    {
+        return this.ajax.getData(url).then((result) => {
+            if (typeof(result.data) === 'undefined') {
+                return result;
+            }
+
+            return result.data;
         });
     }
 }

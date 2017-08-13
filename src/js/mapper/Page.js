@@ -19,6 +19,7 @@ class Page
         return this.data.map(function(row) {
             return {
                 'page_id': row.id,
+                'page_access_token': row.access_token,
                 'page_name': row.name,
                 'page_category': row.category,
                 'page_image': `https://graph.facebook.com/${row.id}/picture`

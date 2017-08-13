@@ -36,3 +36,29 @@
 .facebook_auth__text {
     font-size: 1.25em;
 }
+
+.facebook-page-list__item {
+    display:block;
+    height:48px;
+    width:50%;
+    margin:10px 0px;
+    float:left;
+    line-height:48px;
+    font-weight:1.5em;
+    overflow:hidden;
+}
+
+.facebook-page-list__image {
+    display:block;
+    height:100%;
+    float:left;
+    margin-right:20px;
+}
+
+.facebook-page-list__input{
+    height:24px;
+    width:24px;
+    margin:12px;
+    display:block;
+    float:left;
+}

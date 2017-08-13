@@ -10,12 +10,21 @@ class PostColumns
     getColumns()
     {
         return [{
-            id: "id",
+            id: "page_id",
+            alias: "facebook page id",
             dataType: this.tableauDataTypeObject.int
-        }, {
-            id: "title",
-            alias: "facebook post title",
+        },{
+            id: "post_id",
+            alias: "facebook post id",
             dataType: this.tableauDataTypeObject.string
+        }, {
+            id: "message",
+            alias: "facebook post message",
+            dataType: this.tableauDataTypeObject.string
+        }, {
+            id: "created_at",
+            alias: "facebook post created time",
+            dataType: this.tableauDataTypeObject.datetime
         }];
     }
 }

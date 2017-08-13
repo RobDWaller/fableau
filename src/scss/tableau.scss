@@ -28,3 +28,11 @@
     display: block;
     text-shadow: 2px 2px lighten($fontColorOne, 20%);
 }
+
+.tableau_connect__button:hover {
+    background: lighten($mainColor, 5%);
+}
+
+.tableau_connect__text {
+    font-size: 1.25em;
+}

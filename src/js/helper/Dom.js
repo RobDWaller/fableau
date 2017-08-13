@@ -2,19 +2,29 @@
 
 class Dom
 {
-    getElementById(idName)
+    getId(idName)
     {
         return document.getElementById(idName);
     }
 
+    getClass(className)
+    {
+        return document.getElementsByClassName(className);
+    }
+
+    getTag(tagName)
+    {
+        return document.getElementsByTagName(tagName);   
+    }
+
     addClass(idName, className)
     {
-        this.getElementById(idName).classList.add(className);
+        this.getId(idName).classList.add(className);
     }
 
     removeClass(idName, className)
     {
-        this.getElementById(idName).classList.remove(className);
+        this.getId(idName).classList.remove(className);
     }
 
     createElement(element)
@@ -22,9 +32,14 @@ class Dom
         return document.createElement(element);
     }
 
-    createTextNode(text)
+    createText(text)
     {
         return document.createTextNode(text);
+    }
+
+    createFragment()
+    {
+        return document.createDocumentFragment();
     }
 }
 

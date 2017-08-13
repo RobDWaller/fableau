@@ -1,53 +1,71 @@
+import "babel-polyfill";
+import App from './App.js';
+import Message from './helper/Message.js';
+import MessageRemover from './helper/MessageRemover.js';
 import Dom from './helper/Dom.js';
 import FacebookAuth from './service/facebook/FacebookAuth.js';
 import FacebookRequests from './service/facebook/FacebookRequests.js';
 import FacebookData from './service/facebook/FacebookData.js';
+import UrlParts from './helper/FacebookUrlParts.js';
 import Ajax from './helper/Ajax.js';
-import FacebookPageListBuilder from './helper/FacebookPageListBuilder.js';
 import TableauBuilder from './TableauBuilder.js';
+import * as Config from './Config.js'
 
-var dom = new Dom;
+window.fbAsyncInit = function() {
+    FB.init({
+        appId            : Config.facebook.client_id,
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+};
 
-var tableauBuilder = new TableauBuilder(tableau);
-tableauBuilder.init();
-var connector = tableauBuilder.makeSchema();
-connector = tableauBuilder.getData(connector);
-tableauBuilder.registerConnector(connector);
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
 window.onload = function(){
-    document.getElementById("facebook-auth").addEventListener('click', function(e) {
+
+    var dom = new Dom;
+
+    var app = new App(
+        new TableauBuilder(tableau),
+        dom,
+        new FacebookAuth(Config.facebook.client_id, FB),
+        new FacebookRequests(new FacebookData(new Ajax)),
+        new UrlParts
+    );
+
+    app.initiateTableau();
+
+    dom.getId("facebook-auth").addEventListener('click', function(e) {
         e.preventDefault();
-        
-        let facebook = new FacebookAuth(FB);
 
-        facebook.getLoginStatus().then((response) => {
-            return facebook.getAccessToken(response);
-        }, (error) => {
-            return facebook.login({'scopes': 'manage_user'})
-                .then((response) => {
-                    return facebook.getAccessToken(response);
-                }, (error) => {
-                    reject(response);
-                });
-        }).then((response) => {
-            dom.addClass("tableau-block", "tableau_connect--show");
-            dom.addClass("facebook-block", "facebook_auth--hide");
-            tableauBuilder.setPassword(response);
-            var facebookRequests = new FacebookRequests(new FacebookData(new Ajax), response);
-
-            facebookRequests.getPages().then((response) => {
-                var facebookPageList = new FacebookPageListBuilder(dom, response.getTableauData());
-                facebookPageList.build();
-            });
-
-        }, (error) => {
-            alert('error');
-        });
+        app.authenticateWithFacebook();
     });
 
-    document.getElementById("tableau-connect").addEventListener('click', function(e) {
+    if (app.urlHasFacebookAuthenticationDetails()) {
+        app.switchAppButtons();
+
+        app.saveFacebookAuthenticationDetails(app.getFacebookAccessToken());
+
+        let pages = app.getFacebookPages(app.getFacebookAccessToken());
+
+        app.buildFacebookPageList(pages);
+    }
+
+    dom.getId("tableau-connect").addEventListener('click', function(e) {
         e.preventDefault();
-        tableau.connectionName = "Facebook Posts";
-        tableau.submit();
+        app.submitTableau(tableau);
+    });
+
+    dom.getId("holder").addEventListener("click", (e) => {
+        let messageRemover = new MessageRemover(dom);
+        messageRemover.remove(e);
     });
 }

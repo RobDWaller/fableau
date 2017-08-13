@@ -10,17 +10,54 @@ class FacebookPageListBuilder
 
     build()
     {
-        let ul = this.dom.createElement('ul');
+        let listFragment = this.dom.createFragment();
 
         this.data.forEach((item) => {
-            let li = this.dom.createElement('li');
-            let text = this.dom.createTextNode(item.page_name);
+            let li = this.createItem();
+            
+            let input = this.createInput(item.page_id);
+            
+            let image = this.createImage(item.page_image);
+
+            let text = this.dom.createText(item.page_name);
+            
+            li.appendChild(image);
+            li.appendChild(input);
             li.appendChild(text);
-            ul.appendChild(li);
+            listFragment.appendChild(li);
         });
 
-        let pagesDiv = this.dom.getElementById('facebook-page-list');
+        let ul = this.dom.createElement('ul');
+        ul.setAttribute('id', 'facebook_pages_list');
+        ul.appendChild(listFragment);
+        let pagesDiv = this.dom.getId('facebook-page-list');
         pagesDiv.appendChild(ul);
+    }
+
+    createItem()
+    {
+        let li = this.dom.createElement('li');
+        li.classList.add('facebook-page-list__item');
+        return li;
+    }
+
+    createInput(pageId)
+    {
+        let input = this.dom.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        input.setAttribute('value', pageId);
+        input.classList.add('facebook-page-list__input');
+
+        return input;
+    }
+
+    createImage(pageImage)
+    {
+        let image = this.dom.createElement('img');
+        image.setAttribute('src', pageImage);
+        image.classList.add('facebook-page-list__image');
+
+        return image;
     }
 }
 
