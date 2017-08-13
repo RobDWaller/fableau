@@ -6,8 +6,10 @@ import FacebookPageLoop from '../service/facebook/helper/page-loop.js';
 import FacebookRequests from '../service/facebook/requests.js';
 import FacebookData from '../service/facebook/data.js';
 import PostColumns from '../tableau/columns/posts.js';
-import PageImpressionColumns from '../tableau/columns/page-impressions.js';
-import Table from './table.js';
+import PageColumns from '../tableau/columns/pages.js';
+import PostMetricsColumns from '../tableau/columns/post-metrics.js';
+import PageMetricsColumns from '../tableau/columns/page-metrics.js';
+import TableFactory from './table-factory.js';
 
 class TableauBuilder
 {
@@ -25,12 +27,15 @@ class TableauBuilder
     {
         var tableauConnector = this.tableau.makeConnector();
 
-        var postTable = new Table('posts', 'Posts Meta Data', new PostColumns(this.tableau.dataTypeEnum));
-
-        var pageImpressionsTable = new Table('page_impressions', 'Page Impressions', new PageImpressionColumns(this.tableau.dataTypeEnum));
+        var tableFactory = new TableFactory;
 
         tableauConnector.getSchema = function(schemaCallback){
-            schemaCallback([postTable.getTable(), pageImpressionsTable.getTable()]);
+            schemaCallback([
+                tableFactory.makeTable('posts', 'Posts Meta Data', new PostColumns(this.tableau.dataTypeEnum)).getTable(),
+                tableFactory.makeTable('pages', 'Pages Meta Data', new PageColumns(this.tableau.dataTypeEnum)).getTable(),
+                tableFactory.makeTable('post_metrics', 'Posts Meta Data', new PostMetricsColumns(this.tableau.dataTypeEnum)).getTable(),
+                tableFactory.makeTable('page_metrics', 'Posts Meta Data', new PageMetricsColumns(this.tableau.dataTypeEnum)).getTable()
+            ]);
         };
 
         return tableauConnector;
@@ -63,8 +68,28 @@ class TableauBuilder
                 .then(() => { doneCallback() });
             }
 
-            if (table.tableInfo.id == 'page_impressions') {
-                facebookLoop.getPageImpressions(pageIds)
+            if (table.tableInfo.id == 'pages') {
+                facebookLoop.getPages(pageIds)
+                .then((result) => {
+                    return result.map((page) => {
+                        table.appendRows(post.getTableauData());
+                    });
+                })
+                .then(() => { doneCallback() });
+            }
+
+            if (table.tableInfo.id == 'post_metrics') {
+                facebookLoop.getPostMetrics(pageIds)
+                .then((result) => {
+                    return result.map((post) => {
+                        table.appendRows(post.getTableauData());
+                    });
+                })
+                .then(() => { doneCallback() });
+            }
+
+            if (table.tableInfo.id == 'page_metrics') {
+                facebookLoop.getPageMetrics(pageIds)
                 .then((result) => {
                     return result.map((page) => {
                         table.appendRows(page.getTableauData());

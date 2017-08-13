@@ -1,3 +1,5 @@
+"use strict"
+
 import FacebookPageListBuilder from './service/facebook/helper/page-list-builder.js';
 
 class App

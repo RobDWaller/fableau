@@ -1,3 +1,5 @@
+"use strict"
+
 import "babel-polyfill";
 import App from './app.js';
 import Message from './helper/message.js';
