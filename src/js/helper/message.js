@@ -1,5 +1,5 @@
 
-import Dom from './Dom.js';
+import Dom from './dom.js';
 
 class Message
 {

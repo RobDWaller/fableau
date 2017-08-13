@@ -16,7 +16,7 @@ class Ajax
                     else if (request.status == 400) {
                         reject(request);
                     }
-                    
+
                     reject(request);
                 }
             };

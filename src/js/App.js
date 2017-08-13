@@ -1,4 +1,4 @@
-import FacebookPageListBuilder from './helper/FacebookPageListBuilder.js';
+import FacebookPageListBuilder from './service/facebook/helper/page-list-builder.js';
 
 class App
 {

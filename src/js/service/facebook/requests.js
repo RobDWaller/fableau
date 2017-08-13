@@ -1,8 +1,8 @@
 "use strict"
 
-import Page from '../../mapper/Page.js';
-import Post from '../../mapper/Post.js';
-import PageImpression from '../../mapper/PageImpression.js';
+import Page from '../../mapper/page-meta.js';
+import Post from '../../mapper/post-meta.js';
+import PageImpression from '../../mapper/page-impressions.js';
 
 class FacebookRequests
 {

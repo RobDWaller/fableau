@@ -1,15 +1,15 @@
 import "babel-polyfill";
-import App from './App.js';
-import Message from './helper/Message.js';
-import MessageRemover from './helper/MessageRemover.js';
-import Dom from './helper/Dom.js';
-import FacebookAuth from './service/facebook/FacebookAuth.js';
-import FacebookRequests from './service/facebook/FacebookRequests.js';
-import FacebookData from './service/facebook/FacebookData.js';
-import UrlParts from './helper/FacebookUrlParts.js';
-import Ajax from './helper/Ajax.js';
-import TableauBuilder from './TableauBuilder.js';
-import * as Config from './Config.js'
+import App from './app.js';
+import Message from './helper/message.js';
+import MessageRemover from './helper/message-remover.js';
+import Dom from './helper/dom.js';
+import FacebookAuth from './service/facebook/auth.js';
+import FacebookRequests from './service/facebook/requests.js';
+import FacebookData from './service/facebook/data.js';
+import UrlParts from './service/facebook/helper/url-parts.js';
+import Ajax from './helper/ajax.js';
+import TableauBuilder from './tableau/builder.js';
+import * as Config from './config.js'
 
 window.fbAsyncInit = function() {
     FB.init({

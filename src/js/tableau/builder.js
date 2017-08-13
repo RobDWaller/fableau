@@ -1,13 +1,13 @@
 "use strict"
 
-import Dom from './helper/Dom.js';
-import Ajax from './helper/Ajax.js';
-import FacebookPageLoop from './helper/FacebookPageLoop.js';
-import FacebookRequests from './service/facebook/FacebookRequests.js';
-import FacebookData from './service/facebook/FacebookData.js';
-import PostColumns from './tableau/columns/PostColumns.js';
-import PageImpressionColumns from './tableau/columns/PageImpressionColumns.js';
-import Table from './tableau/Table.js';
+import Dom from '../helper/dom.js';
+import Ajax from '../helper/ajax.js';
+import FacebookPageLoop from '../service/facebook/helper/page-loop.js';
+import FacebookRequests from '../service/facebook/requests.js';
+import FacebookData from '../service/facebook/data.js';
+import PostColumns from '../tableau/columns/posts.js';
+import PageImpressionColumns from '../tableau/columns/page-impressions.js';
+import Table from './table.js';
 
 class TableauBuilder
 {
@@ -42,7 +42,7 @@ class TableauBuilder
 
             let facebook = new FacebookRequests(new FacebookData(new Ajax()));
             facebook.setAccessToken(this.tableau.password);
-            
+
             let facebookLoop = new FacebookPageLoop(facebook);
 
             let pageIds = JSON.parse(this.tableau.connectionData);

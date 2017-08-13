@@ -1,4 +1,4 @@
-import Post from '../src/js/mapper/Post.js';
+import Post from '../src/js/mapper/post-meta.js';
 
 var assert = chai.assert;
 
@@ -16,13 +16,13 @@ describe('Post', function() {
 
     it('Should throw an exception at getTableauData not array', function() {
         var post = new Post({});
-        
+
         chai.expect(() => post.getTableauData()).to.throw(Error, 'array');
     });
 
     it('Should throw an exception at getTableauData empty array', function() {
         var post = new Post([]);
-        
+
         chai.expect(() => post.getTableauData()).to.throw(Error, 'array');
     });
 });
