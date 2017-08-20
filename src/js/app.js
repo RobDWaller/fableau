@@ -4,13 +4,11 @@ import FacebookPageListBuilder from './service/facebook/helper/page-list-builder
 
 class App
 {
-    constructor(tableauBuilder, dom, facebookAuth, facebookRequests, urlParts)
+    constructor(tableauBuilder, dom, facebookRequests, urlParts)
     {
         this.tableauBuilder = tableauBuilder;
 
         this.dom = dom;
-
-        this.facebookAuth = facebookAuth;
 
         this.facebookRequests = facebookRequests;
 
@@ -21,14 +19,11 @@ class App
     {
         this.tableauBuilder.init();
 
-        this.tableauBuilder.registerConnector(
-            this.tableauBuilder.getData(this.tableauBuilder.makeSchema())
-        );
-    }
+        let connector = this.tableauBuilder.makeSchema();
 
-    authenticateWithFacebook()
-    {
-        this.facebookAuth.login({'scopes': 'read_insights, manage_pages'});
+        connector = this.tableauBuilder.getData(connector);
+
+        this.tableauBuilder.registerConnector(connector);
     }
 
     urlHasFacebookAuthenticationDetails()
@@ -67,11 +62,12 @@ class App
         });
     }
 
-    submitTableau(tableau)
+    submitTableau()
     {
+        this.tableauBuilder.setPassword(this.getFacebookAccessToken());
         this.tableauBuilder.setConnectionData();
-        tableau.connectionName = "Facebook Page Metrics";
-        tableau.submit();
+        this.tableauBuilder.setConnectionName("Fableau Facebook Metrics");
+        this.tableauBuilder.submit();
     }
 }
 

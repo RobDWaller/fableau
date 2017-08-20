@@ -29,7 +29,7 @@ class TableauBuilder
 
         var tableFactory = new TableFactory;
 
-        tableauConnector.getSchema = function(schemaCallback){
+        tableauConnector.getSchema = (schemaCallback) => {
             schemaCallback([
                 tableFactory.makeTable('posts', 'Posts Meta Data', new PostColumns(this.tableau.dataTypeEnum)).getTable(),
                 tableFactory.makeTable('pages', 'Pages Meta Data', new PageColumns(this.tableau.dataTypeEnum)).getTable(),
@@ -46,6 +46,7 @@ class TableauBuilder
         tableauConnector.getData = (table, doneCallback) => {
 
             let facebook = new FacebookRequests(new FacebookData(new Ajax()));
+            console.log('Password', this.tableau.password);
             facebook.setAccessToken(this.tableau.password);
 
             let facebookLoop = new FacebookPageLoop(facebook);
@@ -112,9 +113,9 @@ class TableauBuilder
         this.tableau.registerConnector(tableauConnector);
     }
 
-    setPassword(accessToken)
+    setPassword(password)
     {
-        this.tableau.password = accessToken;
+        this.tableau.password = password;
     }
 
     setConnectionData()
@@ -134,6 +135,16 @@ class TableauBuilder
         });
 
         this.tableau.connectionData = JSON.stringify(pageIds);
+    }
+
+    setConnectionName(connectionName)
+    {
+        this.tableau.connectionName = connectionName;
+    }
+
+    submit()
+    {
+        this.tableau.submit();
     }
 }
 

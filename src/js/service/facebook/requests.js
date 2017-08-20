@@ -55,21 +55,21 @@ class FacebookRequests
 
 
 
-    // getAccessTokenStatus()
-    // {
-    //     return this.facebookData.getData(`${this.urlPrepend}/oauth/access_token_info?access_token=${this.accessToken}`)
-    //         .then((result) => {
-    //             if (typeof(result.expires_in) === 'undefined') {
-    //                 return false;
-    //             }
-    //
-    //             if (result.expires_in < 1) {
-    //                 return false;
-    //             }
-    //
-    //             return true;
-    //         });
-    // }
+    getAccessTokenStatus()
+    {
+        return this.facebookData.getData(`${this.urlPrepend}/oauth/access_token_info?access_token=${this.accessToken}`)
+            .then((result) => {
+                if (typeof(result.expires_in) === 'undefined') {
+                    return false;
+                }
+
+                if (result.expires_in < 1) {
+                    return false;
+                }
+
+                return true;
+            });
+    }
 }
 
 export default FacebookRequests;

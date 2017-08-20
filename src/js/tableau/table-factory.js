@@ -6,7 +6,7 @@ class TableFactory
 {
     makeTable(name, alias, columns)
     {
-        return new Table(name, alias, colums);
+        return new Table(name, alias, columns);
     }
 }
 
