@@ -8,7 +8,33 @@ class FacebookPageLoop
         this.data = [];
     }
 
-    getPagePosts(pageIds)
+    getPages(pageIds)
+    {
+        let data = [];
+
+        return Promise.all(pageIds.map((id) => {
+            return this.facebookRequests.getPages(id.page_id).then((result) => {
+                data.push(result);
+            });
+        })).then(() => {
+            return data;
+        });
+    }
+
+    getPageMetrics(pageIds)
+    {
+        let data = [];
+
+        return Promise.all(pageIds.map((id) => {
+            return this.facebookRequests.getPageMetrics(id.page_id).then((result) => {
+                data.push(result);
+            });
+        })).then(() => {
+            return data;
+        });
+    }
+
+    getPosts(pageIds)
     {
         let data = [];
 
@@ -21,12 +47,12 @@ class FacebookPageLoop
         });
     }
 
-    getPageImpressions(pageIds)
+    getPostMetrics(pageIds)
     {
         let data = [];
 
         return Promise.all(pageIds.map((id) => {
-            return this.facebookRequests.getPageImpressions(id.page_id).then((result) => {
+            return this.facebookRequests.getPostMetrics(id.page_id).then((result) => {
                 data.push(result);
             });
         })).then(() => {

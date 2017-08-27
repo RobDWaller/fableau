@@ -53,8 +53,6 @@ class FacebookRequests
         });
     }
 
-
-
     getAccessTokenStatus()
     {
         return this.facebookData.getData(`${this.urlPrepend}/oauth/access_token_info?access_token=${this.accessToken}`)
