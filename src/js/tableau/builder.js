@@ -73,7 +73,7 @@ class TableauBuilder
                 facebookLoop.getPages(pageIds)
                 .then((result) => {
                     return result.map((page) => {
-                        table.appendRows(post.getTableauData());
+                        table.appendRows(page.getTableauData());
                     });
                 })
                 .then(() => { doneCallback() });
