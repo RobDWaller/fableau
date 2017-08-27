@@ -32,7 +32,7 @@ stores short term access tokens. This is because the WDC only makes use of
 JavaScript which is client based code and Facebook advise against asking for a
 long term access token via client code.
 
-For more information on this issue, please see the [Facebook documentation](https://developers.facebook.com/docs/facebook-login/access-tokens).
+For more information on this issue please see the [Facebook documentation](https://developers.facebook.com/docs/facebook-login/access-tokens).
 It is relatively simple to solve this problem using server based code such as
 PHP or Python. We have no plans to extend this Web Data Connector to solve
 this problem.
