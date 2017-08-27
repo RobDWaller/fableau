@@ -36,7 +36,7 @@ class FacebookRequests
             });
     }
 
-    getPage()
+    getPage(pageId)
     {
         return this.facebookData.getData(`${this.urlPrepend}/${pageId}/?fields=link,name,category,about&access_token=${this.accessToken}`)
             .then((result) => {
