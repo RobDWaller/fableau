@@ -1,8 +1,9 @@
 .tableau_connect {
     display:none;
     width: 640px;
-    margin:50px 0px auto;
+    margin:0px auto;
     transition: display 1s;
+    margin-bottom: 50px;
 }
 
 .tableau_connect--show {
