@@ -36,6 +36,17 @@ class FacebookRequests
             });
     }
 
+    getPage()
+    {
+        return this.facebookData.getData(`${this.urlPrepend}/${pageId}/?fields=link,name,category,about&access_token=${this.accessToken}`)
+            .then((result) => {
+                return new Page(result);
+            });
+    }
+
+    /**
+     * @todo New Page is incorrect different data structure returned. Is in fact an account.
+     */
     getPages()
     {
         return this.facebookData.getDataPaginate(`${this.urlPrepend}/me/accounts?access_token=${this.accessToken}`)
