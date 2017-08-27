@@ -1,4 +1,4 @@
-### Fableau (Alpha)
+# [Fableau](http://fableau.io) (Alpha)
 
 A Tableau Web Data Connector for Facebook that allows you to pull your page and
 post metrics data into Tableau.  
@@ -7,7 +7,7 @@ The WDC is currently in alpha and requires further testing and tidy up, please
 use it at your own risk until we release a stable version.
 
 You can use this code to create your own Web Data Connector however you can use
-the Connector at [Fableau.io](http://fableau.io)
+the connector as is at [Fableau.io](http://fableau.io)
 
 ## End Points
 
