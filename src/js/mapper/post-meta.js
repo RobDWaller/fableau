@@ -1,5 +1,7 @@
 "use strict"
 
+import DateTime from '../helper/date-time.js';
+
 class Post
 {
     constructor(data, pageId)
@@ -24,9 +26,16 @@ class Post
                 'page_id': row.id.split('_')[0],
                 'post_id': row.id,
                 'message': row.message,
-                'created_at': row.created_time
+                'created_at': this.convertDateToTableauDate(row.created_time)
             }
         });
+    }
+
+    convertDateToTableauDate(dateTimeString)
+    {
+        let date = new DateTime;
+
+        return date.getTableauTimeString(dateTimeString);
     }
 }
 

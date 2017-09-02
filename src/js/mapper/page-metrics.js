@@ -13,11 +13,6 @@ class PageMetrics
         this.data = data;
     }
 
-    /**
-     *
-     *
-     *
-    */
     getTableauData()
     {
         if (!Array.isArray(this.data) || this.data.length === 0) {

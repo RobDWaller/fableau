@@ -1,3 +1,4 @@
+"use strict"
 
 class Page
 {
@@ -12,6 +13,7 @@ class Page
 
     getTableauData()
     {
+
         if (!Array.isArray(this.data) || this.data.length === 0) {
             throw new Error('Data is not an array or is an empty!!');
         }

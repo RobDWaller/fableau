@@ -33,8 +33,8 @@ class TableauBuilder
             schemaCallback([
                 tableFactory.makeTable('posts', 'Posts Meta Data', new PostColumns(this.tableau.dataTypeEnum)).getTable(),
                 tableFactory.makeTable('pages', 'Pages Meta Data', new PageColumns(this.tableau.dataTypeEnum)).getTable(),
-                tableFactory.makeTable('post_metrics', 'Posts Meta Data', new PostMetricsColumns(this.tableau.dataTypeEnum)).getTable(),
-                tableFactory.makeTable('page_metrics', 'Posts Meta Data', new PageMetricsColumns(this.tableau.dataTypeEnum)).getTable()
+                tableFactory.makeTable('post_metrics', 'Posts Metric Data', new PostMetricsColumns(this.tableau.dataTypeEnum)).getTable(),
+                tableFactory.makeTable('page_metrics', 'Pages Metric Data', new PageMetricsColumns(this.tableau.dataTypeEnum)).getTable()
             ]);
         };
 
@@ -60,7 +60,7 @@ class TableauBuilder
             });
 
             if (table.tableInfo.id == 'posts') {
-                facebookLoop.getPagePosts(pageIds)
+                facebookLoop.getPosts(pageIds)
                 .then((result) => {
                     return result.map((post) => {
                         table.appendRows(post.getTableauData());

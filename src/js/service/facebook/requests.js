@@ -4,6 +4,7 @@ import Page from '../../mapper/page-meta.js';
 import Post from '../../mapper/post-meta.js';
 import PageMetrics from '../../mapper/page-metrics.js';
 import PostMetrics from '../../mapper/post-metrics.js';
+import DateTime from '../../helper/date-time.js';
 
 class FacebookRequests
 {
@@ -11,7 +12,9 @@ class FacebookRequests
     {
         this.facebookData = facebookData;
 
-        this.urlPrepend = 'https://graph.facebook.com'
+        this.urlPrepend = 'https://graph.facebook.com';
+
+        this.date = new DateTime;
     }
 
     setAccessToken(accessToken)
@@ -40,7 +43,7 @@ class FacebookRequests
     {
         return this.facebookData.getData(`${this.urlPrepend}/${pageId}/?fields=link,name,category,about&access_token=${this.accessToken}`)
             .then((result) => {
-                return new Page(result);
+                return new Page([result]);
             });
     }
 
@@ -57,8 +60,8 @@ class FacebookRequests
 
     getPageMetrics(pageId)
     {
-        return this.facebookData.getDataPaginateLimit(
-            `${this.urlPrepend}/${pageId}/insights/page_impressions,page_impressions_unique,page_impressions_paid,page_impressions_organic,page_stories,page_engaged_users,page_consumptions,page_consumptions_unique,page_negative_feedback,page_negative_feedback_unique,page_fan_adds_unique,page_views_total,page_views_logged_in_unique,page_posts_impressions,page_posts_impressions_unique,page_posts_impressions_paid,page_posts_impressions_organic,page_post_engagements,page_video_views?access_token=${this.accessToken}&since=${this.date.getUnixTimestampMinusDays(90)}&until=${this.date.getUnixTimestamp()}`, 'previous'
+        return this.facebookData.getDataPaginate(
+            `${this.urlPrepend}/${pageId}/insights/page_impressions,page_impressions_unique,page_impressions_paid,page_impressions_organic,page_stories,page_engaged_users,page_consumptions,page_consumptions_unique,page_negative_feedback,page_negative_feedback_unique,page_fan_adds_unique,page_views_total,page_views_logged_in_unique,page_posts_impressions,page_posts_impressions_unique,page_posts_impressions_paid,page_posts_impressions_organic,page_post_engagements,page_video_views?access_token=${this.accessToken}&since=${this.date.getUnixTimestampMinusDays(90)}&until=${this.date.getUnixTimestamp()}`, 'previous', true
         ).then((result) => {
             return new PageMetrics(result);
         });
