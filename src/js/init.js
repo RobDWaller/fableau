@@ -11,7 +11,7 @@ import FacebookData from './service/facebook/data.js';
 import UrlParts from './service/facebook/helper/url-parts.js';
 import Ajax from './helper/ajax.js';
 import TableauBuilder from './tableau/builder.js';
-import * as Config from './config.js'
+import * as Config from '../../config.js'
 
 /**
  * Core Fableau app file, begins with kicking offing and configuring Facebook
