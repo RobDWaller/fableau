@@ -35,7 +35,7 @@ long term access token via client code.
 For more information on this issue please see the [Facebook documentation](https://developers.facebook.com/docs/facebook-login/access-tokens).
 It is relatively simple to solve this problem using server based code such as
 PHP or Python. We have no plans to extend this Web Data Connector to solve
-this problem.
+this problem.  
 
 ## License
 

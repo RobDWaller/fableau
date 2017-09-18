@@ -7,3 +7,4 @@ public/assets
 npm-debug*
 .env
 public/tests.html
+config.js
