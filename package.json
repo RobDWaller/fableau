@@ -9,16 +9,21 @@
         "WDC",
         "Web Data Connector"
     ],
-    "scripts": {
-        "webpack": "webpack --progress --hide-modules --config=./node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "webpack --progress --hide-modules --watch --config=./node_modules/laravel-mix/setup/webpack.config.js"
-    },
     "author": "Rob Waller",
     "license": "MIT",
+    "scripts": {
+        "build": "webpack --mode=production",
+        "dev": "webpack --mode=development"
+    },
     "dependencies": {
-        "chai": "^4.0.0",
-        "laravel-mix": "^0.12.0",
-        "mocha": "^3.4.2",
-        "babel-polyfill": "^6.23.0"
+        "babel-polyfill": "^6.26.0"
+    },
+    "devDependencies": {
+        "mini-css-extract-plugin": "^0.4.0",
+        "node-sass": "^4.9.0",
+        "sass-loader": "^7.0.3",
+        "webpack": "^4.12.2",
+        "webpack-cli": "^3.0.8",
+        "css-loader": "^0.28.11"
     }
 }

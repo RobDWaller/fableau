@@ -12,8 +12,8 @@ class FacebookPageLoop
     {
         let data = [];
 
-        return Promise.all(pageIds.map((id) => {
-            return this.facebookRequests.getPage(id.page_id).then((result) => {
+        return Promise.all(pageIds.map((page) => {
+            return this.facebookRequests.getPage(page).then((result) => {
                 data.push(result);
             });
         })).then(() => {
@@ -25,8 +25,8 @@ class FacebookPageLoop
     {
         let data = [];
 
-        return Promise.all(pageIds.map((id) => {
-            return this.facebookRequests.getPageMetrics(id.page_id).then((result) => {
+        return Promise.all(pageIds.map((page) => {
+            return this.facebookRequests.getPageMetrics(page).then((result) => {
                 data.push(result);
             });
         })).then(() => {
@@ -38,8 +38,11 @@ class FacebookPageLoop
     {
         let data = [];
 
-        return Promise.all(pageIds.map((id) => {
-            return this.facebookRequests.getPosts(id.page_id).then((result) => {
+        console.log(pageIds);
+        tableau.log(pageIds);
+
+        return Promise.all(pageIds.map((page) => {
+            return this.facebookRequests.getPosts(page).then((result) => {
                 data.push(result);
             });
         })).then(() => {
@@ -51,8 +54,8 @@ class FacebookPageLoop
     {
         let data = [];
 
-        return Promise.all(pageIds.map((id) => {
-            return this.facebookRequests.getPostMetrics(id.page_id).then((result) => {
+        return Promise.all(pageIds.map((page) => {
+            return this.facebookRequests.getPostMetrics(page).then((result) => {
                 data.push(result);
             });
         })).then(() => {
