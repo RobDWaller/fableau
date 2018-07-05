@@ -1,7 +1,18 @@
 "use strict"
 
+/**
+ * Simple wrapper for making Ajax requests
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class Ajax
 {
+    /**
+     * Make an AJAX request based on a URL string
+     *
+     * @param string url
+     * @return Promise
+     */
     getData(url)
     {
         let data = new Promise((resolve, reject) =>{

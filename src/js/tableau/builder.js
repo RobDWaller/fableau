@@ -49,8 +49,6 @@ class TableauBuilder
 
             let facebook = new FacebookRequests(new FacebookData(new Ajax()));
 
-            //facebook.setAccessToken(this.tableau.password);
-
             let facebookLoop = new FacebookPageLoop(facebook);
 
             let pageIds = JSON.parse(this.tableau.connectionData);
@@ -120,41 +118,6 @@ class TableauBuilder
         this.tableau.password = password;
     }
 
-    // setConnectionData(accessToken)
-    // {
-    //     let dom = new Dom;
-    //
-    //     let pages = dom.getClass('facebook-page-list__input');
-    //
-    //     let pageIds = Array.prototype.filter.call(pages, (item) => {
-    //         if (item.checked) {
-    //             return item;
-    //         }
-    //     }).map((item) => {
-    //         let pageId = item.value;
-    //
-    //         // var pageDetails = {
-    //         //     'page_id': pageId
-    //         // }
-    //
-    //         return this.ajax.getData(`https://graph.facebook.com/${pageId}?access_token=${accessToken}&fields=access_token`).then((result) => {
-    //                 console.log(result);
-    //                 tableau.log(result);
-    //
-    //                 return {
-    //                     'page_id': pageId,
-    //                     'access_token': result.access_token
-    //                 }
-    //             });
-    //
-    //         // tableau.log(pageDetails);
-    //         // return pageDetails;
-    //     });
-    //
-    //     tableau.log(pageIds);
-    //     this.tableau.connectionData = JSON.stringify(pageIds);
-    // }
-
     setConnectionData(accessToken)
     {
         let dom = new Dom;
@@ -185,34 +148,14 @@ class TableauBuilder
         });
     }
 
-    // setConnectionData()
-    // {
-    //     let dom = new Dom;
-    //
-    //     let pages = dom.getClass('facebook-page-list__input');
-    //
-    //     let pageIds = Array.prototype.filter.call(pages, (item) => {
-    //         if (item.checked) {
-    //             return item;
-    //         }
-    //     }).map((item) => {
-    //         return {
-    //             'page_id': item.value
-    //         }
-    //     });
-    //
-    //     this.tableau.connectionData = JSON.stringify(pageIds);
-    // }
-
     setConnectionName(connectionName)
     {
-        console.log('made it');
         this.tableau.connectionName = connectionName;
     }
 
+
     submit()
     {
-        console.log('submitting code');
         this.tableau.submit();
     }
 }

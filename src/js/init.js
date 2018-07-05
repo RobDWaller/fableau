@@ -99,6 +99,11 @@ window.onload = function(){
         app.buildFacebookPageList(pages);
     }
 
+    /**
+     * Save Facebook Auth Data to Tableau
+     * Async function because the page tokens must be received from Facebook
+     * before auth data is submitted to Tableau.
+     */
     async function submitTableau() {
         await tableauBuilder.setConnectionData(app.getFacebookAccessToken());
         tableauBuilder.setConnectionName("Fableau Facebook Metrics");
@@ -106,12 +111,10 @@ window.onload = function(){
     }
 
     /**
-     * Submit Facebook Page Data to Tableau
+     * Save Facebook Auth Data to Tableau
      */
     dom.getId("tableau-connect").addEventListener('click', function(e) {
         e.preventDefault();
-
-        console.log(app.getFacebookAccessToken());
 
         submitTableau();
     });

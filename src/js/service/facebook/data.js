@@ -1,6 +1,15 @@
+"use strict"
 
+/**
+ * Provides Facebook specific wrappers for making AJAX requests
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class FacebookData
 {
+    /**
+     * @param Object ajax
+     */
     constructor(ajax)
     {
         this.ajax = ajax;
@@ -8,6 +17,18 @@ class FacebookData
         this.data = [];
     }
 
+    /**
+     * Facebook provide data in paginated batches. This method loops through
+     * those requests as defined.
+     *
+     * @param string url
+     * @param string direction
+     * @param bool hasLimit
+     * @param int count
+     * @param int limit
+     *
+     * @todo has boolean flag argument
+     */
     getDataPaginate(url, direction = 'next', hasLimit = false, count = 0, limit = 3)
     {
         return this.ajax.getData(url).then((result) => {
@@ -26,6 +47,11 @@ class FacebookData
         });
     }
 
+    /**
+     * This method will make an individual request to Facebook for API data.
+     *
+     * @param string url
+     */
     getData(url)
     {
         return this.ajax.getData(url).then((result) => {
@@ -37,6 +63,15 @@ class FacebookData
         });
     }
 
+    /**
+     * Check whetehr Facebook pagination through API requests has reached its limit
+     *
+     * @param bool hasLimit
+     * @param int count
+     * @param int limit
+     *
+     * @todo has boolean flag argument
+     */
     hasNotReachedLimit(hasLimit, count, limit)
     {
         if (!hasLimit) {

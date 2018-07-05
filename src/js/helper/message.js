@@ -1,8 +1,18 @@
+"use strict"
 
 import Dom from './dom.js';
 
+/**
+ * Adds human readable messages to the web page
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class Message
 {
+    /**
+     * @param string message
+     * @todo should inject the dom.
+     */
     constructor(message)
     {
         this.message = message;
@@ -10,6 +20,11 @@ class Message
         this.dom = new Dom;
     }
 
+    /**
+     * Make the message
+     *
+     * @return Message
+     */
     make()
     {
         this.divHolder = this.dom.createElement('div');
@@ -39,6 +54,9 @@ class Message
         return this;
     }
 
+    /**
+     * Add the message to the web page.
+     */
     render()
     {
         let holder = this.dom.getId('holder');

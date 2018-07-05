@@ -1,5 +1,10 @@
 "use strict"
 
+/**
+ * Methods to help with the Facebook authentication process.
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class FacebookAuth
 {
     /**
@@ -13,7 +18,10 @@ class FacebookAuth
     }
 
     /**
+     * Check the user is logged into Facebook.
      *
+     * @return Promise
+     * @todo not sure if this is usesd, may be dead code.
      */
     getLoginStatus()
     {
@@ -36,11 +44,6 @@ class FacebookAuth
     {
         window.location = `https://www.facebook.com/v2.9/dialog/oauth?client_id=${this.clientId}&redirect_uri=${encodeURI(window.location.href)}&response_type=token&scope=${scopes.scopes}`;
     }
-
-    // getAccessToken()
-    // {
-    //     return this.facebook.getAuthResponse().accessToken;
-    // }
 }
 
 export default FacebookAuth;
