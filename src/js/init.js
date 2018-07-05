@@ -11,7 +11,8 @@ import FacebookData from './service/facebook/data.js';
 import UrlParts from './service/facebook/helper/url-parts.js';
 import Ajax from './helper/ajax.js';
 import TableauBuilder from './tableau/builder.js';
-import * as Config from '../../config.js'
+import * as Config from '../../config.js';
+import '../scss/main.scss';
 
 /**
  * Core Fableau app file, begins with kicking offing and configuring Facebook
@@ -26,6 +27,9 @@ import * as Config from '../../config.js'
  */
 window.onload = function(){
 
+    /**
+     * Load Facebook
+     */
     window.fbAsyncInit = function(){
         FB.init({
             appId            : Config.facebook.client_id,
@@ -45,6 +49,20 @@ window.onload = function(){
     }(document, 'script', 'facebook-jssdk'));
 
     /**
+     * Initiate and Load Tableau
+     */
+    var tableauBuilder = new TableauBuilder(tableau, new Ajax);
+
+    try {
+        tableauBuilder.init();
+        var connector = tableauBuilder.makeSchema();
+        connector = tableauBuilder.getData(connector);
+        tableauBuilder.registerConnector(connector);
+    } catch (e) {
+        tableau.abortWithError(e);
+    }
+
+    /**
      * Initiate simple wrapper for working with the DOM
      */
     var dom = new Dom;
@@ -53,14 +71,14 @@ window.onload = function(){
      * Iniate core Fableau App with what it requires.
      */
     var app = new App(
-        new TableauBuilder(tableau),
         dom,
         new FacebookRequests(new FacebookData(new Ajax)),
         new UrlParts
     );
 
-    app.initiateTableau();
-
+    /**
+     * Start the Facebook authentication process
+     */
     dom.getId("facebook-auth").addEventListener('click', function(e) {
         e.preventDefault();
 
@@ -69,6 +87,10 @@ window.onload = function(){
         auth.login({'scopes': 'read_insights, manage_pages'});
     });
 
+    /**
+     * Check if the page is loading with the Facebook auth token and load the
+     * Facebook pages selector page
+     */
     if (app.urlHasFacebookAuthenticationDetails()) {
         app.switchAppButtons();
 
@@ -77,11 +99,26 @@ window.onload = function(){
         app.buildFacebookPageList(pages);
     }
 
+    async function submitTableau() {
+        await tableauBuilder.setConnectionData(app.getFacebookAccessToken());
+        tableauBuilder.setConnectionName("Fableau Facebook Metrics");
+        tableauBuilder.submit();
+    }
+
+    /**
+     * Submit Facebook Page Data to Tableau
+     */
     dom.getId("tableau-connect").addEventListener('click', function(e) {
         e.preventDefault();
-        app.submitTableau();
+
+        console.log(app.getFacebookAccessToken());
+
+        submitTableau();
     });
 
+    /**
+     * Remove any error messages from the DOM
+     */
     dom.getId("holder").addEventListener("click", (e) => {
         let messageRemover = new MessageRemover(dom);
         messageRemover.remove(e);

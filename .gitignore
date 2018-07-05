@@ -8,3 +8,4 @@ npm-debug*
 .env
 public/tests.html
 config.js
+package-lock.json

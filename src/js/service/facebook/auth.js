@@ -2,6 +2,9 @@
 
 class FacebookAuth
 {
+    /**
+     * Load client id and Facebook SDK Library
+     */
     constructor(clientId, facebook)
     {
         this.clientId = clientId;
@@ -9,6 +12,9 @@ class FacebookAuth
         this.facebook = facebook;
     }
 
+    /**
+     *
+     */
     getLoginStatus()
     {
         return new Promise((resolve, reject) => {
@@ -21,15 +27,20 @@ class FacebookAuth
         });
     }
 
+    /**
+     * Redirect user to Facebook Login page
+     *
+     * @param Object scopes
+     */
     login(scopes = {})
     {
         window.location = `https://www.facebook.com/v2.9/dialog/oauth?client_id=${this.clientId}&redirect_uri=${encodeURI(window.location.href)}&response_type=token&scope=${scopes.scopes}`;
     }
 
-    getAccessToken(loginResponse)
-    {
-        return this.facebook.getAuthResponse().accessToken;
-    }
+    // getAccessToken()
+    // {
+    //     return this.facebook.getAuthResponse().accessToken;
+    // }
 }
 
 export default FacebookAuth;

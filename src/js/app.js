@@ -4,26 +4,13 @@ import FacebookPageListBuilder from './service/facebook/helper/page-list-builder
 
 class App
 {
-    constructor(tableauBuilder, dom, facebookRequests, urlParts)
+    constructor(dom, facebookRequests, urlParts)
     {
-        this.tableauBuilder = tableauBuilder;
-
         this.dom = dom;
 
         this.facebookRequests = facebookRequests;
 
         this.urlParts = urlParts;
-    }
-
-    initiateTableau()
-    {
-        this.tableauBuilder.init();
-
-        let connector = this.tableauBuilder.makeSchema();
-
-        connector = this.tableauBuilder.getData(connector);
-
-        this.tableauBuilder.registerConnector(connector);
     }
 
     urlHasFacebookAuthenticationDetails()
@@ -49,9 +36,9 @@ class App
 
     getFacebookPages(accessToken)
     {
-        this.facebookRequests.setAccessToken(accessToken);
+        //this.facebookRequests.setAccessToken(accessToken);
 
-        return this.facebookRequests.getPages();
+        return this.facebookRequests.getPages(accessToken);
     }
 
     buildFacebookPageList(pagesPromise)
@@ -60,14 +47,6 @@ class App
             let facebookPageList = new FacebookPageListBuilder(this.dom, response.getTableauData());
             facebookPageList.build();
         });
-    }
-
-    submitTableau()
-    {
-        this.tableauBuilder.setPassword(this.getFacebookAccessToken());
-        this.tableauBuilder.setConnectionData();
-        this.tableauBuilder.setConnectionName("Fableau Facebook Metrics");
-        this.tableauBuilder.submit();
     }
 }
 
