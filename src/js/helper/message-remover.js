@@ -2,6 +2,8 @@
 
 /**
  * Removes the human readable messages from the webpage
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
  */
 class MessageRemover
 {

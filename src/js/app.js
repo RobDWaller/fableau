@@ -4,6 +4,8 @@ import FacebookPageListBuilder from './service/facebook/helper/page-list-builder
 
 /**
  * Control the general functionality of the Web Data Connector
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
  */
 class App
 {
@@ -54,6 +56,7 @@ class App
     /**
      * Retrieve a list of Facebook pages that the user has access to.
      *
+     * @param string accessToken
      * @return array
      */
     getFacebookPages(accessToken)
@@ -63,6 +66,8 @@ class App
 
     /**
      * Build the list of Facebook pages to the web page
+     *
+     * @param Promise pagesPromise
      */
     buildFacebookPageList(pagesPromise)
     {

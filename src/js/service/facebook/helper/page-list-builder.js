@@ -3,7 +3,7 @@
 /**
  * Simple class that adds the Facebook page details to the web page
  *
- * Rob Waller <rdwaller1984@googlemail.com>
+ * @author Rob Waller <rdwaller1984@googlemail.com>
  */
 class FacebookPageListBuilder
 {
