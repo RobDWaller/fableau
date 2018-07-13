@@ -25,10 +25,10 @@ class Ajax
                         resolve(request.responseText);
                     }
                     else if (request.status == 400) {
-                        reject(request);
+                        reject(request.responseText);
                     }
 
-                    reject(request);
+                    reject(request.responseText);
                 }
             };
 
