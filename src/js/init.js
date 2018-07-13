@@ -21,6 +21,21 @@ import '../scss/main.scss';
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
 
+ /**
+  * Initiate and Load Tableau
+  */
+(function () {
+    var tableauBuilder = new TableauBuilder(tableau, new Ajax);
+
+    try {
+        tableauBuilder.init();
+        var connector = tableauBuilder.makeSchema();
+        connector = tableauBuilder.getData(connector);
+        tableauBuilder.registerConnector(connector);
+    } catch (e) {
+        tableau.abortWithError(e);
+    }
+})();
 
 /**
  * Starting place for all functionality, events, etc.
@@ -47,20 +62,6 @@ window.onload = function(){
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
-    /**
-     * Initiate and Load Tableau
-     */
-    var tableauBuilder = new TableauBuilder(tableau, new Ajax);
-
-    try {
-        tableauBuilder.init();
-        var connector = tableauBuilder.makeSchema();
-        connector = tableauBuilder.getData(connector);
-        tableauBuilder.registerConnector(connector);
-    } catch (e) {
-        tableau.abortWithError(e);
-    }
 
     /**
      * Initiate simple wrapper for working with the DOM
@@ -105,6 +106,7 @@ window.onload = function(){
      * before auth data is submitted to Tableau.
      */
     async function submitTableau() {
+        var tableauBuilder = new TableauBuilder(tableau, new Ajax);
         await tableauBuilder.setConnectionData(app.getFacebookAccessToken());
         tableauBuilder.setConnectionName("Fableau Facebook Metrics");
         tableauBuilder.submit();
