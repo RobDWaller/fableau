@@ -6,8 +6,17 @@ import PageMetrics from '../../mapper/page-metrics.js';
 import PostMetrics from '../../mapper/post-metrics.js';
 import DateTime from '../../helper/date-time.js';
 
+/**
+ * Facade for the individual requests for Facebook posts and pages data.
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class FacebookRequests
 {
+    /**
+     * @todo probably sensible to inject the other parts into the contructor
+     * @param Object facebookData
+     */
     constructor(facebookData)
     {
         this.facebookData = facebookData;
@@ -17,11 +26,12 @@ class FacebookRequests
         this.date = new DateTime;
     }
 
-    // setAccessToken(accessToken)
-    // {
-    //     page.access_token = accessToken;
-    // }
-
+    /**
+     * Get a list of posts from the Facebook page
+     *
+     * @param Object page
+     * @return Promise
+     */
     getPosts(page)
     {
         return this.facebookData.getDataPaginate(`${this.urlPrepend}/${page.id}/posts?fields=created_time,message,id,link,type&access_token=${page.access_token}`)
@@ -30,6 +40,12 @@ class FacebookRequests
             });
     }
 
+    /**
+     * Get the metrics for the individual posts
+     *
+     * @param Object page
+     * @return Promise
+     */
     getPostMetrics(page)
     {
         return this.facebookData.getDataPaginate(
@@ -39,6 +55,12 @@ class FacebookRequests
             });
     }
 
+    /**
+     * Get details on an idividual Facebook page
+     *
+     * @param Object page
+     * @return Promise
+     */
     getPage(page)
     {
         return this.facebookData.getData(`${this.urlPrepend}/${page.id}/?fields=link,name,category,about&access_token=${page.access_token}`)
@@ -48,7 +70,10 @@ class FacebookRequests
     }
 
     /**
-     * @todo New Page is incorrect different data structure returned. Is in fact an account.
+     * Return a list of Facebook pages that the user has access to.
+     *
+     * @param string accessToken
+     * @return Promise
      */
     getPages(accessToken)
     {
@@ -58,6 +83,12 @@ class FacebookRequests
             });
     }
 
+    /**
+     * Get the metrics for the Facebook page.
+     *
+     * @param Object page
+     * @return Promise
+     */
     getPageMetrics(page)
     {
         return this.facebookData.getDataPaginate(
@@ -67,6 +98,9 @@ class FacebookRequests
         });
     }
 
+    /**
+     * @todo need to consider this.
+     */
     getAccessTokenStatus()
     {
         return this.facebookData.getData(`${this.urlPrepend}/oauth/access_token_info?access_token=${page.access_token}`)

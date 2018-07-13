@@ -1,12 +1,25 @@
 "use strict"
 
+/**
+ * Define the columns that make up the Tableau pages table
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class PageColumns
 {
+    /**
+     * @param Object
+     */
     constructor(tableauDataTypeObject)
     {
         this.tableauDataTypeObject = tableauDataTypeObject;
     }
 
+    /**
+     * Define and return the columns that make up the Tableau pages table
+     *
+     * @return array
+     */
     getColumns()
     {
         return [{

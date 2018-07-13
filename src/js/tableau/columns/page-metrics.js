@@ -1,12 +1,25 @@
 "use strict"
 
+/**
+ * Define the columns that make up the Tableau page-metrics table
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class PageImpressionColumns
 {
+    /**
+     * @param Object
+     */
     constructor(tableauDataTypeObject)
     {
         this.tableauDataTypeObject = tableauDataTypeObject;
     }
 
+    /**
+     * Define and return the columns that make up the Tableau page-metrics table
+     *
+     * @return array
+     */
     getColumns()
     {
         return [{

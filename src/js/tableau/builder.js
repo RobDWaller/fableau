@@ -11,8 +11,19 @@ import PostMetricsColumns from '../tableau/columns/post-metrics.js';
 import PageMetricsColumns from '../tableau/columns/page-metrics.js';
 import TableFactory from './table-factory.js';
 
+/**
+ * Main Tableau class that builds and configures the Tableau Web Data Connector
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class TableauBuilder
 {
+    /**
+     * Inject the Tableau SDK object
+     *
+     * @param Object tableau
+     * @param Ajax ajax
+     */
     constructor(tableau, ajax)
     {
         this.tableau = tableau;
@@ -20,11 +31,19 @@ class TableauBuilder
         this.ajax = ajax;
     }
 
+    /**
+     * Start the Tableau build process, set the auth type to custom
+     */
     init()
     {
         this.tableau.authType = this.tableau.authTypeEnum.custom;
     }
 
+    /**
+     * Define the schema for the tables to create in Tableau.
+     *
+     * @return Object
+     */
     makeSchema()
     {
         var tableauConnector = this.tableau.makeConnector();
@@ -43,13 +62,18 @@ class TableauBuilder
         return tableauConnector;
     }
 
+    /**
+     * Define what data the WDC should collect from Facebook, when and where.
+     *
+     * @param Object tableauConnector
+     * @return Object
+     * @todo Sort out the Facebook tooken check and the commented code.
+     */
     getData(tableauConnector)
     {
         tableauConnector.getData = (table, doneCallback) => {
 
             let facebook = new FacebookRequests(new FacebookData(new Ajax()));
-
-            //facebook.setAccessToken(this.tableau.password);
 
             let facebookLoop = new FacebookPageLoop(facebook);
 
@@ -105,56 +129,39 @@ class TableauBuilder
         return tableauConnector;
     }
 
-    processResult(table, result, pageId = null)
-    {
-        table.appendRows(result.getTableauData(pageId));
-    }
+    /**
+     * @todo not sure if this method is actually used.
+     */
+    // processResult(table, result, pageId = null)
+    // {
+    //     table.appendRows(result.getTableauData(pageId));
+    // }
 
+    /**
+     * Register the Tableau connector, this is one of the final steps.
+     *
+     * @param Object tableauConnector
+     */
     registerConnector(tableauConnector)
     {
         this.tableau.registerConnector(tableauConnector);
     }
 
-    setPassword(password)
-    {
-        this.tableau.password = password;
-    }
-
-    // setConnectionData(accessToken)
+    /**
+     * @todo may not need this method anymore
+     */
+    // setPassword(password)
     // {
-    //     let dom = new Dom;
-    //
-    //     let pages = dom.getClass('facebook-page-list__input');
-    //
-    //     let pageIds = Array.prototype.filter.call(pages, (item) => {
-    //         if (item.checked) {
-    //             return item;
-    //         }
-    //     }).map((item) => {
-    //         let pageId = item.value;
-    //
-    //         // var pageDetails = {
-    //         //     'page_id': pageId
-    //         // }
-    //
-    //         return this.ajax.getData(`https://graph.facebook.com/${pageId}?access_token=${accessToken}&fields=access_token`).then((result) => {
-    //                 console.log(result);
-    //                 tableau.log(result);
-    //
-    //                 return {
-    //                     'page_id': pageId,
-    //                     'access_token': result.access_token
-    //                 }
-    //             });
-    //
-    //         // tableau.log(pageDetails);
-    //         // return pageDetails;
-    //     });
-    //
-    //     tableau.log(pageIds);
-    //     this.tableau.connectionData = JSON.stringify(pageIds);
+    //     this.tableau.password = password;
     // }
 
+    /**
+     * Set the connection data for Tableau to use for Facebook requests. This
+     * includes the Facebook page access token and the page id.
+     *
+     * @param string accessToken
+     * @return Promise
+     */
     setConnectionData(accessToken)
     {
         let dom = new Dom;
@@ -179,40 +186,26 @@ class TableauBuilder
                 data.push(result);
             });
         })).then(() => {
-            this.tableau.log(data);
             this.tableau.connectionData = JSON.stringify(data);
             return;
         });
     }
 
-    // setConnectionData()
-    // {
-    //     let dom = new Dom;
-    //
-    //     let pages = dom.getClass('facebook-page-list__input');
-    //
-    //     let pageIds = Array.prototype.filter.call(pages, (item) => {
-    //         if (item.checked) {
-    //             return item;
-    //         }
-    //     }).map((item) => {
-    //         return {
-    //             'page_id': item.value
-    //         }
-    //     });
-    //
-    //     this.tableau.connectionData = JSON.stringify(pageIds);
-    // }
-
+    /**
+     * Name the Tableau Web Data Connector
+     *
+     * @param string connectionName 
+     */
     setConnectionName(connectionName)
     {
-        console.log('made it');
         this.tableau.connectionName = connectionName;
     }
 
+    /**
+     * The final step, submit the Tableau Web Data Connector
+     */
     submit()
     {
-        console.log('submitting code');
         this.tableau.submit();
     }
 }

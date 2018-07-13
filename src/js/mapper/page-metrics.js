@@ -2,8 +2,16 @@
 
 import DateTime from '../helper/date-time.js';
 
+/**
+ * Maps the page metrics data from Facebook to a Tableau friendly format
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class PageMetrics
 {
+    /**
+     * @param array data
+     */
     constructor(data)
     {
         if (typeof data === 'undefined') {
@@ -13,6 +21,11 @@ class PageMetrics
         this.data = data;
     }
 
+    /**
+     * Map the data to a Tableau format
+     *
+     * @return array
+     */
     getTableauData()
     {
         if (!Array.isArray(this.data) || this.data.length === 0) {
@@ -51,6 +64,12 @@ class PageMetrics
 
     }
 
+    /**
+     * Convert a Facebook date time string to a Tableau date time string
+     *
+     * @param string dateTimeString
+     * @return string
+     */
     convertDateToTableauDate(dateTimeString)
     {
         let date = new DateTime;

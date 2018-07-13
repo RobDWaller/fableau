@@ -1,7 +1,15 @@
 "use strict"
 
+/**
+ * Maps the page meta data from Facebook to a Tableau friendly format
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class Page
 {
+    /**
+     * @param array data
+     */
     constructor(data)
     {
         if (typeof data === 'undefined') {
@@ -11,6 +19,11 @@ class Page
         this.data = data;
     }
 
+    /**
+     * Map the data to a Tableau format
+     *
+     * @return array
+     */
     getTableauData()
     {
 

@@ -1,6 +1,15 @@
+"use strict"
 
+/**
+ * Provides facade for looping through Facebook API requests
+ *
+ * @author Rob Waller <rdwaller1984@googlemail.com>
+ */
 class FacebookPageLoop
 {
+    /**
+     * @param Object facebookRequests
+     */
     constructor(facebookRequests)
     {
         this.facebookRequests = facebookRequests;
@@ -8,6 +17,12 @@ class FacebookPageLoop
         this.data = [];
     }
 
+    /**
+     * Get page data from Facebook
+     *
+     * @param array pageIds
+     * @return Promise
+     */
     getPages(pageIds)
     {
         let data = [];
@@ -21,6 +36,12 @@ class FacebookPageLoop
         });
     }
 
+    /**
+     * Get Facebook page metric data
+     *
+     * @param array pageIds
+     * @return Promise
+     */
     getPageMetrics(pageIds)
     {
         let data = [];
@@ -34,12 +55,15 @@ class FacebookPageLoop
         });
     }
 
+    /**
+     * Get Facebook posts data, posts made to pages
+     *
+     * @param array pageIds
+     * @return Promise
+     */
     getPosts(pageIds)
     {
         let data = [];
-
-        console.log(pageIds);
-        tableau.log(pageIds);
 
         return Promise.all(pageIds.map((page) => {
             return this.facebookRequests.getPosts(page).then((result) => {
@@ -50,6 +74,12 @@ class FacebookPageLoop
         });
     }
 
+    /**
+     * Get Facebook posts metric data
+     *
+     * @param array pageIds
+     * @return Promise
+     */
     getPostMetrics(pageIds)
     {
         let data = [];
