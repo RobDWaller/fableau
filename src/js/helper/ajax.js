@@ -35,6 +35,8 @@ class Ajax
             request.open('GET', url, true);
             request.send();
 
+        }).catch(e => {
+            tableau.abortWithError(e);
         });
 
         return data.then(function(result){

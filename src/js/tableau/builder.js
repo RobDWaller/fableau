@@ -181,20 +181,18 @@ class TableauBuilder
         let data = [];
 
         return Promise.all(pageIds.map((id) => {
-            this.tableau.log('here');
             return this.ajax.getData(`https://graph.facebook.com/${id.page_id}?access_token=${accessToken}&fields=access_token`).then((result) => {
                 data.push(result);
             });
         })).then(() => {
             this.tableau.connectionData = JSON.stringify(data);
-            return;
         });
     }
 
     /**
      * Name the Tableau Web Data Connector
      *
-     * @param string connectionName 
+     * @param string connectionName
      */
     setConnectionName(connectionName)
     {
