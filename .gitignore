@@ -9,3 +9,4 @@ npm-debug*
 public/tests.html
 config.js
 package-lock.json
+yarn-error.log
