@@ -1,6 +1,6 @@
 {
     "name": "fableau",
-    "version": "1.7.0",
+    "version": "0.1.0",
     "description": "A Tableau Facebook Web Data Connector",
     "main": "index.js",
     "keywords": [
