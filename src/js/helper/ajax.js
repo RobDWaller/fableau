@@ -1,48 +1,43 @@
-"use strict"
+'use strict'
 
 /**
  * Simple wrapper for making Ajax requests
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
-class Ajax
-{
-    /**
+class Ajax {
+  /**
      * Make an AJAX request based on a URL string
      *
      * @param string url
      * @return Promise
      */
-    getData(url)
-    {
-        let data = new Promise((resolve, reject) =>{
+  getData (url) {
+    let data = new Promise((resolve, reject) => {
+      /* global XMLHttpRequest */
+      var request = new XMLHttpRequest()
 
-            var request = new XMLHttpRequest();
+      request.onreadystatechange = function () {
+        if (request.readyState === XMLHttpRequest.DONE) {
+          if (request.status === 200) {
+            resolve(request.responseText)
+          }
 
-            request.onreadystatechange = function() {
-                if (request.readyState == XMLHttpRequest.DONE ) {
-                    if (request.status == 200) {
-                        resolve(request.responseText);
-                    }
-                    else if (request.status == 400) {
-                        reject(request.responseText);
-                    }
+          reject(request.responseText)
+        }
+      }
 
-                    reject(request.responseText);
-                }
-            };
+      request.open('GET', url, true)
+      request.send()
+    }).catch(e => {
+      /* global tableau */
+      tableau.abortWithError(e)
+    })
 
-            request.open('GET', url, true);
-            request.send();
-
-        }).catch(e => {
-            tableau.abortWithError(e);
-        });
-
-        return data.then(function(result){
-            return JSON.parse(result);
-        });
-    }
+    return data.then(function (result) {
+      return JSON.parse(result)
+    })
+  }
 }
 
-export default Ajax;
+export default Ajax
