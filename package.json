@@ -14,11 +14,11 @@
     "scripts": {
         "build": "webpack --mode=production",
         "dev": "webpack --mode=development",
-        "test": "jest"
+        "test": "jest",
+        "analyse": "./node_modules/eslint/bin/eslint.js ./src/js"
     },
     "dependencies": {
-        "babel-polyfill": "^6.26.0",
-        "yarn": "^1.7.0"
+        "babel-polyfill": "^6.26.0"
     },
     "devDependencies": {
         "babel-core": "^6.26.3",
@@ -31,10 +31,18 @@
         "regenerator-runtime": "^0.12.0",
         "sass-loader": "^7.0.3",
         "webpack": "^4.12.2",
-        "webpack-cli": "^3.0.8"
+        "webpack-cli": "^3.0.8",
+        "eslint": "^4.18.0",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "eslint-config-standard": "^11.0.0"
     },
     "babel": {
-        "presets": ["env"]
+        "presets": [
+            "env"
+        ]
     },
     "jest": {
         "transform": {
