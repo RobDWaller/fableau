@@ -7,8 +7,8 @@
  */
 class Page {
   /**
-     * @param array data
-     */
+   * @param array data
+   */
   constructor (data) {
     if (typeof data === 'undefined') {
       throw new Error('Data is not defined!!')
@@ -18,10 +18,10 @@ class Page {
   }
 
   /**
-     * Map the data to a Tableau format
-     *
-     * @return array
-     */
+   * Map the data to a Tableau format
+   *
+   * @return array
+   */
   getTableauData () {
     if (!Array.isArray(this.data) || this.data.length === 0) {
       throw new Error('Data is not an array or is an empty!!')

@@ -9,9 +9,9 @@ import DateTime from '../helper/date-time.js'
  */
 class Post {
   /**
-     * @param array data
-     * @param int pageId
-     */
+   * @param array data
+   * @param int pageId
+   */
   constructor (data, pageId) {
     if (typeof data === 'undefined') {
       throw new Error('Data is not defined!!')
@@ -23,10 +23,10 @@ class Post {
   }
 
   /**
-     * Map the data to a Tableau format
-     *
-     * @return array
-     */
+   * Map the data to a Tableau format
+   *
+   * @return array
+   */
   getTableauData () {
     if (!Array.isArray(this.data) || this.data.length === 0) {
       throw new Error('Data is not an array or is an empty!!')
@@ -43,11 +43,11 @@ class Post {
   }
 
   /**
-     * Convert a Facebook date time string to a Tableau date time string
-     *
-     * @param string dateTimeString
-     * @return string
-     */
+   * Convert a Facebook date time string to a Tableau date time string
+   *
+   * @param string dateTimeString
+   * @return string
+   */
   convertDateToTableauDate (dateTimeString) {
     let date = new DateTime()
 
