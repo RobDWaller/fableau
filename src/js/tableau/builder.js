@@ -18,11 +18,11 @@ import TableFactory from './table-factory.js'
  */
 class TableauBuilder {
   /**
-     * Inject the Tableau SDK object
-     *
-     * @param Object tableau
-     * @param Ajax ajax
-     */
+   * Inject the Tableau SDK object
+   *
+   * @param Object tableau
+   * @param Ajax ajax
+   */
   constructor (tableau, ajax) {
     this.tableau = tableau
 
@@ -30,17 +30,17 @@ class TableauBuilder {
   }
 
   /**
-     * Start the Tableau build process, set the auth type to custom
-     */
+   * Start the Tableau build process, set the auth type to custom
+   */
   init () {
     this.tableau.authType = this.tableau.authTypeEnum.custom
   }
 
   /**
-     * Define the schema for the tables to create in Tableau.
-     *
-     * @return Object
-     */
+   * Define the schema for the tables to create in Tableau.
+   *
+   * @return Object
+   */
   makeSchema () {
     var tableauConnector = this.tableau.makeConnector()
 
@@ -59,12 +59,12 @@ class TableauBuilder {
   }
 
   /**
-     * Define what data the WDC should collect from Facebook, when and where.
-     *
-     * @param Object tableauConnector
-     * @return Object
-     * @todo Sort out the Facebook tooken check and the commented code.
-     */
+   * Define what data the WDC should collect from Facebook, when and where.
+   *
+   * @param Object tableauConnector
+   * @return Object
+   * @todo Sort out the Facebook tooken check and the commented code.
+   */
   getData (tableauConnector) {
     tableauConnector.getData = (table, doneCallback) => {
       let facebook = new FacebookRequests(new FacebookData(new Ajax()))
@@ -124,37 +124,37 @@ class TableauBuilder {
   }
 
   /**
-     * @todo not sure if this method is actually used.
-     */
+   * @todo not sure if this method is actually used.
+   */
   // processResult(table, result, pageId = null)
   // {
   //     table.appendRows(result.getTableauData(pageId));
   // }
 
   /**
-     * Register the Tableau connector, this is one of the final steps.
-     *
-     * @param Object tableauConnector
-     */
+   * Register the Tableau connector, this is one of the final steps.
+   *
+   * @param Object tableauConnector
+   */
   registerConnector (tableauConnector) {
     this.tableau.registerConnector(tableauConnector)
   }
 
   /**
-     * @todo may not need this method anymore
-     */
+   * @todo may not need this method anymore
+   */
   // setPassword(password)
   // {
   //     this.tableau.password = password;
   // }
 
   /**
-     * Set the connection data for Tableau to use for Facebook requests. This
-     * includes the Facebook page access token and the page id.
-     *
-     * @param string accessToken
-     * @return Promise
-     */
+   * Set the connection data for Tableau to use for Facebook requests. This
+   * includes the Facebook page access token and the page id.
+   *
+   * @param string accessToken
+   * @return Promise
+   */
   setConnectionData (accessToken) {
     let dom = new Dom()
 
@@ -182,17 +182,17 @@ class TableauBuilder {
   }
 
   /**
-     * Name the Tableau Web Data Connector
-     *
-     * @param string connectionName
-     */
+   * Name the Tableau Web Data Connector
+   *
+   * @param string connectionName
+   */
   setConnectionName (connectionName) {
     this.tableau.connectionName = connectionName
   }
 
   /**
-     * The final step, submit the Tableau Web Data Connector
-     */
+   * The final step, submit the Tableau Web Data Connector
+   */
   submit () {
     this.tableau.submit()
   }

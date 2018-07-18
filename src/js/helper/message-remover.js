@@ -7,17 +7,17 @@
  */
 class MessageRemover {
   /**
-     * @param Dom dom
-     */
+   * @param Dom dom
+   */
   constructor (dom) {
     this.dom = dom
   }
 
   /**
-     * Remove the message from the web page
-     *
-     * @param Event event
-     */
+   * Remove the message from the web page
+   *
+   * @param Event event
+   */
   remove (event) {
     if (event.target && event.target.matches('div.message__close')) {
       let elements = this.dom.getClass('message__close')

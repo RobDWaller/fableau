@@ -7,8 +7,8 @@
  */
 class FacebookAuth {
   /**
-     * Load client id and Facebook SDK Library
-     */
+   * Load client id and Facebook SDK Library
+   */
   constructor (clientId, facebook) {
     this.clientId = clientId
 
@@ -16,11 +16,11 @@ class FacebookAuth {
   }
 
   /**
-     * Check the user is logged into Facebook.
-     *
-     * @return Promise
-     * @todo not sure if this is usesd, may be dead code.
-     */
+   * Check the user is logged into Facebook.
+   *
+   * @return Promise
+   * @todo not sure if this is usesd, may be dead code.
+   */
   getLoginStatus () {
     return new Promise((resolve, reject) => {
       this.facebook.getLoginStatus((response) => {
@@ -33,10 +33,10 @@ class FacebookAuth {
   }
 
   /**
-     * Redirect user to Facebook Login page
-     *
-     * @param Object scopes
-     */
+   * Redirect user to Facebook Login page
+   *
+   * @param Object scopes
+   */
   login (scopes = {}) {
     window.location = `https://www.facebook.com/v2.9/dialog/oauth?client_id=${this.clientId}&redirect_uri=${encodeURI(window.location.href)}&response_type=token&scope=${scopes.scopes}`
   }

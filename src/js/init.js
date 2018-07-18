@@ -42,8 +42,8 @@ import '../scss/main.scss';
  */
 window.onload = function () {
   /**
-     * Load Facebook
-     */
+   * Load Facebook
+   */
   window.fbAsyncInit = function () {
     /* global FB */
     FB.init({
@@ -64,13 +64,13 @@ window.onload = function () {
   }(document, 'script', 'facebook-jssdk'))
 
   /**
-     * Initiate simple wrapper for working with the DOM
-     */
+   * Initiate simple wrapper for working with the DOM
+   */
   var dom = new Dom()
 
   /**
-     * Iniate core Fableau App with what it requires.
-     */
+   * Iniate core Fableau App with what it requires.
+   */
   var app = new App(
     dom,
     new FacebookRequests(new FacebookData(new Ajax())),
@@ -78,8 +78,8 @@ window.onload = function () {
   )
 
   /**
-     * Start the Facebook authentication process
-     */
+   * Start the Facebook authentication process
+   */
   dom.getId('facebook-auth').addEventListener('click', function (e) {
     e.preventDefault()
 
@@ -89,9 +89,9 @@ window.onload = function () {
   })
 
   /**
-     * Check if the page is loading with the Facebook auth token and load the
-     * Facebook pages selector page
-     */
+   * Check if the page is loading with the Facebook auth token and load the
+   * Facebook pages selector page
+   */
   if (app.urlHasFacebookAuthenticationDetails()) {
     app.switchAppButtons()
 
@@ -101,10 +101,10 @@ window.onload = function () {
   }
 
   /**
-     * Save Facebook Auth Data to Tableau
-     * Async function because the page tokens must be received from Facebook
-     * before auth data is submitted to Tableau.
-     */
+   * Save Facebook Auth Data to Tableau
+   * Async function because the page tokens must be received from Facebook
+   * before auth data is submitted to Tableau.
+   */
   async function submitTableau () {
     var tableauBuilder = new TableauBuilder(tableau, new Ajax())
     await tableauBuilder.setConnectionData(app.getFacebookAccessToken())
@@ -113,8 +113,8 @@ window.onload = function () {
   }
 
   /**
-     * Save Facebook Auth Data to Tableau
-     */
+   * Save Facebook Auth Data to Tableau
+   */
   dom.getId('tableau-connect').addEventListener('click', function (e) {
     e.preventDefault()
 
@@ -122,8 +122,8 @@ window.onload = function () {
   })
 
   /**
-     * Remove any error messages from the DOM
-     */
+   * Remove any error messages from the DOM
+   */
   dom.getId('holder').addEventListener('click', (e) => {
     let messageRemover = new MessageRemover(dom)
     messageRemover.remove(e)

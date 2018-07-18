@@ -7,8 +7,8 @@
  */
 class FacebookPageLoop {
   /**
-     * @param Object facebookRequests
-     */
+   * @param Object facebookRequests
+   */
   constructor (facebookRequests) {
     this.facebookRequests = facebookRequests
 
@@ -16,11 +16,11 @@ class FacebookPageLoop {
   }
 
   /**
-     * Get page data from Facebook
-     *
-     * @param array pageIds
-     * @return Promise
-     */
+   * Get page data from Facebook
+   *
+   * @param array pageIds
+   * @return Promise
+   */
   getPages (pageIds) {
     let data = []
 
@@ -34,11 +34,11 @@ class FacebookPageLoop {
   }
 
   /**
-     * Get Facebook page metric data
-     *
-     * @param array pageIds
-     * @return Promise
-     */
+   * Get Facebook page metric data
+   *
+   * @param array pageIds
+   * @return Promise
+   */
   getPageMetrics (pageIds) {
     let data = []
 
@@ -52,11 +52,11 @@ class FacebookPageLoop {
   }
 
   /**
-     * Get Facebook posts data, posts made to pages
-     *
-     * @param array pageIds
-     * @return Promise
-     */
+   * Get Facebook posts data, posts made to pages
+   *
+   * @param array pageIds
+   * @return Promise
+   */
   getPosts (pageIds) {
     let data = []
 
@@ -70,11 +70,11 @@ class FacebookPageLoop {
   }
 
   /**
-     * Get Facebook posts metric data
-     *
-     * @param array pageIds
-     * @return Promise
-     */
+   * Get Facebook posts metric data
+   *
+   * @param array pageIds
+   * @return Promise
+   */
   getPostMetrics (pageIds) {
     let data = []
 

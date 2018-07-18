@@ -9,13 +9,13 @@ import Table from './table.js'
  */
 class TableFactory {
   /**
-     * Make a Table object
-     *
-     * @param string id
-     * @param string alias
-     * @param Object columns
-     * @return Table
-     */
+   * Make a Table object
+   *
+   * @param string id
+   * @param string alias
+   * @param Object columns
+   * @return Table
+   */
   makeTable (id, alias, columns) {
     return new Table(id, alias, columns)
   }

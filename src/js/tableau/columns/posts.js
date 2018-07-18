@@ -7,17 +7,17 @@
  */
 class PostColumns {
   /**
-     * @param Object
-     */
+   * @param Object
+   */
   constructor (tableauDataTypeObject) {
     this.tableauDataTypeObject = tableauDataTypeObject
   }
 
   /**
-     * Define and return the columns that make up the Tableau posts table
-     *
-     * @return array
-     */
+   * Define and return the columns that make up the Tableau posts table
+   *
+   * @return array
+   */
   getColumns () {
     return [{
       id: 'page_id',

@@ -8,11 +8,11 @@
  */
 class FacebookUrlParts {
   /**
-     * Break the Facebook authentication URL down into its component parts
-     *
-     * @param string url
-     * @return array
-     */
+   * Break the Facebook authentication URL down into its component parts
+   *
+   * @param string url
+   * @return array
+   */
   getParts (url) {
     let result = {}
 
@@ -28,22 +28,22 @@ class FacebookUrlParts {
   }
 
   /**
-     * Split the URL on the hash that Facebook place in the URL
-     *
-     * @param string url
-     * @return array
-     */
+   * Split the URL on the hash that Facebook place in the URL
+   *
+   * @param string url
+   * @return array
+   */
   splitUrl (url) {
     return url.split('#')
   }
 
   /**
-     * Retrieve a specific part of the URL string.
-     *
-     * @param string partString
-     * @param string part
-     * @return Object
-     */
+   * Retrieve a specific part of the URL string.
+   *
+   * @param string partString
+   * @param string part
+   * @return Object
+   */
   getPart (partString, part) {
     let parts = partString.split('&')
 

@@ -7,9 +7,9 @@
  */
 class FacebookPageListBuilder {
   /**
-     * @param Object dom
-     * @param array data
-     */
+   * @param Object dom
+   * @param array data
+   */
   constructor (dom, data) {
     this.dom = dom
 
@@ -17,8 +17,8 @@ class FacebookPageListBuilder {
   }
 
   /**
-     * Build the Facebook Page list and add it to the web page
-     */
+   * Build the Facebook Page list and add it to the web page
+   */
   build () {
     let listFragment = this.dom.createFragment()
 
@@ -45,10 +45,10 @@ class FacebookPageListBuilder {
   }
 
   /**
-     * Create a single list item
-     *
-     * @return Element
-     */
+   * Create a single list item
+   *
+   * @return Element
+   */
   createItem () {
     let li = this.dom.createElement('li')
     li.classList.add('facebook-page-list__item')
@@ -56,11 +56,11 @@ class FacebookPageListBuilder {
   }
 
   /**
-     * Create a check box for the page item
-     *
-     * @param int pageId
-     * @return Element
-     */
+   * Create a check box for the page item
+   *
+   * @param int pageId
+   * @return Element
+   */
   createInput (pageId) {
     let input = this.dom.createElement('input')
     input.setAttribute('type', 'checkbox')
@@ -71,11 +71,11 @@ class FacebookPageListBuilder {
   }
 
   /**
-     * Create the page image
-     *
-     * @param string pageImage
-     * @return Element
-     */
+   * Create the page image
+   *
+   * @param string pageImage
+   * @return Element
+   */
   createImage (pageImage) {
     let image = this.dom.createElement('img')
     image.setAttribute('src', pageImage)

@@ -7,10 +7,10 @@
  */
 class Table {
   /**
-     * @param string id
-     * @param string alias
-     * @param Object colums
-     */
+   * @param string id
+   * @param string alias
+   * @param Object colums
+   */
   constructor (id, alias, columns) {
     this.id = id
     this.alias = alias
@@ -18,11 +18,11 @@ class Table {
   }
 
   /**
-     * Return a table object.
-     *
-     * @return Object
-     * @todo this probably doesn't make sense.
-     */
+   * Return a table object.
+   *
+   * @return Object
+   * @todo this probably doesn't make sense.
+   */
   getTable () {
     return {
       id: this.id,

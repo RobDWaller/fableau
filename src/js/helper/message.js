@@ -9,9 +9,9 @@ import Dom from './dom.js'
  */
 class Message {
   /**
-     * @param string message
-     * @todo should inject the dom.
-     */
+   * @param string message
+   * @todo should inject the dom.
+   */
   constructor (message) {
     this.message = message
 
@@ -19,10 +19,10 @@ class Message {
   }
 
   /**
-     * Make the message
-     *
-     * @return Message
-     */
+   * Make the message
+   *
+   * @return Message
+   */
   make () {
     this.divHolder = this.dom.createElement('div')
     this.divHolder.classList.add('message')
@@ -52,8 +52,8 @@ class Message {
   }
 
   /**
-     * Add the message to the web page.
-     */
+   * Add the message to the web page.
+   */
   render () {
     let holder = this.dom.getId('holder')
     holder.insertBefore(this.divHolder, holder.firstChild)
