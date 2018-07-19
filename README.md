@@ -1,13 +1,13 @@
-# [Fableau](http://fableau.io) (Alpha)
+# [Fableau](http://fableau.io) (Beta)
+[![Build Status](https://travis-ci.org/RobDWaller/fableau.svg?branch=master)](https://travis-ci.org/RobDWaller/fableau) [![codecov](https://codecov.io/gh/RobDWaller/fableau/branch/master/graph/badge.svg)](https://codecov.io/gh/RobDWaller/fableau)
 
-A Tableau Web Data Connector for Facebook that allows you to pull your page and
-post metrics data into Tableau.  
+A Tableau Web Data Connector for Facebook that allows you to pull your Facebook post and
+page metrics data into Tableau.  
 
-The WDC is currently in alpha and requires further testing and tidy up, please
-use it at your own risk until we release a stable version.
+The WDC is currently in alpha and requires further testing and tidy up.
 
 You can use this code to create your own Web Data Connector however you can use
-the connector as is at [Fableau.io](http://fableau.io)
+the connector itself at [Fableau.io](http://fableau.io)
 
 ## End Points
 
@@ -34,8 +34,8 @@ long term access token via client code.
 
 For more information on this issue please see the [Facebook documentation](https://developers.facebook.com/docs/facebook-login/access-tokens).
 It is relatively simple to solve this problem using server based code such as
-PHP or Python. We have no plans to extend this Web Data Connector to solve
-this problem.  
+PHP, Python or NodeJS. We have no plans to extend this Web Data Connector to solve
+this problem at this time.  
 
 ## License
 
