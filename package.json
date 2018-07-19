@@ -15,7 +15,8 @@
         "build": "webpack --mode=production",
         "dev": "webpack --mode=development",
         "test": "jest",
-        "analyse": "./node_modules/eslint/bin/eslint.js ./src/js"
+        "analyse": "eslint ./src/js",
+        "codecov": "jest && codecov"
     },
     "dependencies": {
         "babel-polyfill": "^6.26.0"
@@ -24,20 +25,21 @@
         "babel-core": "^6.26.3",
         "babel-jest": "^23.4.0",
         "babel-preset-env": "^1.7.0",
+        "codecov": "^3.0.4",
         "css-loader": "^0.28.11",
+        "eslint": "^4.18.0",
+        "eslint-config-standard": "^11.0.0",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-standard": "^3.0.1",
         "jest": "^23.4.1",
         "mini-css-extract-plugin": "^0.4.0",
         "node-sass": "^4.9.0",
         "regenerator-runtime": "^0.12.0",
         "sass-loader": "^7.0.3",
         "webpack": "^4.12.2",
-        "webpack-cli": "^3.0.8",
-        "eslint": "^4.18.0",
-        "eslint-plugin-import": "^2.8.0",
-        "eslint-plugin-node": "^5.2.1",
-        "eslint-plugin-promise": "^3.6.0",
-        "eslint-plugin-standard": "^3.0.1",
-        "eslint-config-standard": "^11.0.0"
+        "webpack-cli": "^3.0.8"
     },
     "babel": {
         "presets": [
@@ -48,6 +50,11 @@
         "transform": {
             "^.+\\.js$": "babel-jest"
         },
-        "verbose": true
+        "verbose": true,
+        "coverageDirectory": "./coverage/",
+        "collectCoverage": true,
+        "collectCoverageFrom": [
+            "src/js/**/*.js"
+        ]
     }
 }
