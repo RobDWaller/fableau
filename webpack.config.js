@@ -22,11 +22,7 @@ module.exports = {
                 loader: "babel-loader",
                 options: {
                     presets: [
-                        ["env", {
-                            targets: {
-                                ie: 11
-                            }
-                        }]
+                        ["env"]
                     ]
                 }
             }
