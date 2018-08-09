@@ -146,9 +146,8 @@ class TableauBuilder {
    *
    * @param string password
    */
-  setPassword(password)
-  {
-      this.tableau.password = password;
+  setPassword (password) {
+    this.tableau.password = password
   }
 
   /**

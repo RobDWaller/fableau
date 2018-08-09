@@ -40,7 +40,7 @@ class MessageRemover {
    */
   matches (event, elementString) {
     if (!event.target.matches) {
-        return (event.srcElement.type + '.' + event.srcElement.className) === elementString
+      return (event.srcElement.type + '.' + event.srcElement.className) === elementString
     }
 
     return event.target.matches(elementString)
