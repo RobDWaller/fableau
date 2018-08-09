@@ -32,30 +32,6 @@ class PageColumns {
       alias: 'Page Post Id',
       dataType: this.tableauDataTypeObject.string
     }, {
-      id: 'post_stories',
-      alias: 'Stories',
-      dataType: this.tableauDataTypeObject.int
-    }, {
-      id: 'post_storytellers',
-      alias: 'Storytellers',
-      dataType: this.tableauDataTypeObject.int
-    }, {
-      id: 'post_story_adds',
-      alias: 'Story Adds',
-      dataType: this.tableauDataTypeObject.int
-    }, {
-      id: 'post_engaged_users',
-      alias: 'Engaged Users',
-      dataType: this.tableauDataTypeObject.int
-    }, {
-      id: 'post_consumptions',
-      alias: 'Consumptions',
-      dataType: this.tableauDataTypeObject.int
-    }, {
-      id: 'post_consumptions_unique',
-      alias: 'Consumptions Unique',
-      dataType: this.tableauDataTypeObject.int
-    }, {
       id: 'post_impressions',
       alias: 'Impressions',
       dataType: this.tableauDataTypeObject.int

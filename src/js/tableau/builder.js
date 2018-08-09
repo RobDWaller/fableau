@@ -141,12 +141,15 @@ class TableauBuilder {
   }
 
   /**
-   * @todo may not need this method anymore
+   * Sets the Tableau WDC password property. Only used because Tableau requires
+   * the password property to be set.
+   *
+   * @param string password
    */
-  // setPassword(password)
-  // {
-  //     this.tableau.password = password;
-  // }
+  setPassword(password)
+  {
+      this.tableau.password = password;
+  }
 
   /**
    * Set the connection data for Tableau to use for Facebook requests. This

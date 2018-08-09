@@ -19,7 +19,7 @@ class MessageRemover {
    * @param Event event
    */
   remove (event) {
-    if (event.target && event.target.matches('div.message__close')) {
+    if (event.target && this.matches(event, 'div.message__close')) {
       let elements = this.dom.getClass('message__close')
 
       Array.prototype.forEach.call(elements, (element) => {
@@ -28,6 +28,22 @@ class MessageRemover {
         )
       })
     }
+  }
+
+  /**
+   * This is a pollyfill for event.target to work with Tableau Desktop which
+   * seems to use an old version of IE as its client.
+   *
+   * @param Event event
+   * @param string elementString
+   * @return bool
+   */
+  matches (event, elementString) {
+    if (!event.target.matches) {
+        return (event.srcElement.type + '.' + event.srcElement.className) === elementString
+    }
+
+    return event.target.matches(elementString)
   }
 }
 
