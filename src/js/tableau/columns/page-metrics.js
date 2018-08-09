@@ -72,18 +72,6 @@ class PageImpressionColumns {
       alias: 'Impressions Organic Last Month',
       dataType: this.tableauDataTypeObject.int
     }, {
-      id: 'page_stories_day',
-      alias: 'Stories Last Day',
-      dataType: this.tableauDataTypeObject.int
-    }, {
-      id: 'page_stories_week',
-      alias: 'Stories Last Week',
-      dataType: this.tableauDataTypeObject.int
-    }, {
-      id: 'page_stories_days_28',
-      alias: 'Stories Last Month',
-      dataType: this.tableauDataTypeObject.int
-    }, {
       id: 'page_engaged_users_day',
       alias: 'Engaged Users Last Day',
       dataType: this.tableauDataTypeObject.int

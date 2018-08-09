@@ -109,6 +109,8 @@ window.onload = function () {
     var tableauBuilder = new TableauBuilder(tableau, new Ajax())
     await tableauBuilder.setConnectionData(app.getFacebookAccessToken())
     tableauBuilder.setConnectionName('Fableau Facebook Metrics')
+    // Not used by the Web Data Connector, password is required by Tableau.
+    tableauBuilder.setPassword('password')
     tableauBuilder.submit()
   }
 
