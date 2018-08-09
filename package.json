@@ -52,6 +52,7 @@
             "^.+\\.js$": "babel-jest"
         },
         "verbose": true,
+        "testURL": "http://localhost/",
         "coverageDirectory": "./coverage/",
         "collectCoverage": true,
         "collectCoverageFrom": [
