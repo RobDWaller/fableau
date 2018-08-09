@@ -28,8 +28,6 @@ class FacebookData {
    * @todo has boolean flag argument
    */
   getDataPaginate (url, direction = 'next', hasLimit = false, count = 0, limit = 3) {
-    console.log(url)
-
     return this.ajax.getData(url).then((result) => {
       this.data = this.data.concat(result.data)
 
