@@ -1,7 +1,7 @@
 'use strict'
 
-import Page from '../../mapper/page-meta.js'
-import Post from '../../mapper/post-meta.js'
+import PageMeta from '../../mapper/page-meta.js'
+import PostMeta from '../../mapper/post-meta.js'
 import PageMetrics from '../../mapper/page-metrics.js'
 import PostMetrics from '../../mapper/post-metrics.js'
 import DateTime from '../../helper/date-time.js'
@@ -33,7 +33,7 @@ class FacebookRequests {
   getPosts (page) {
     return this.facebookData.getDataPaginate(`${this.urlPrepend}/${page.id}/posts?fields=created_time,message,id,link,type&access_token=${page.access_token}`)
       .then((result) => {
-        return new Post(result)
+        return new PostMeta(result)
       })
   }
 
@@ -60,7 +60,7 @@ class FacebookRequests {
   getPage (page) {
     return this.facebookData.getData(`${this.urlPrepend}/${page.id}/?fields=link,name,category,about&access_token=${page.access_token}`)
       .then((result) => {
-        return new Page([result])
+        return new PageMeta([result])
       })
   }
 
@@ -73,7 +73,7 @@ class FacebookRequests {
   getPages (accessToken) {
     return this.facebookData.getDataPaginate(`${this.urlPrepend}/me/accounts?access_token=${accessToken}`)
       .then((result) => {
-        return new Page(result)
+        return new PageMeta(result)
       })
   }
 
