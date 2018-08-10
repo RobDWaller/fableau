@@ -69,7 +69,7 @@ class DateTime {
       return `${dateParts[0]} ${timeParts[0]}`
     }
 
-    return '0000-00-00 00:00:00';
+    return '0000-00-00 00:00:00'
   }
 }
 
