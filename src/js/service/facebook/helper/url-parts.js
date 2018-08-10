@@ -6,7 +6,7 @@
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
-class FacebookUrlParts {
+class UrlParts {
   /**
    * Break the Facebook authentication URL down into its component parts
    *
@@ -16,7 +16,7 @@ class FacebookUrlParts {
   getParts (url) {
     let result = {}
 
-    let parts = this.splitUrl(url)
+    let parts = this.splitUrl(url, '#')
 
     result['url'] = parts[0]
 
@@ -33,12 +33,12 @@ class FacebookUrlParts {
    * @param string url
    * @return array
    */
-  splitUrl (url) {
-    return url.split('#')
+  splitUrl (url, needle) {
+    return url.split(needle)
   }
 
   /**
-   * Retrieve a specific part of the URL string.
+   * Retrieve a specific part of the URL query string.
    *
    * @param string partString
    * @param string part
@@ -51,7 +51,6 @@ class FacebookUrlParts {
       let parts = b.split('=')
 
       a[parts[0]] = parts[1]
-
       return a
     }, {})
 
@@ -59,4 +58,4 @@ class FacebookUrlParts {
   }
 }
 
-export default FacebookUrlParts
+export default UrlParts
