@@ -54,19 +54,22 @@ class DateTime {
   }
 
   /**
-   * Return a date timestamp string, this is specific to the way Facebook
-   * returns date timestamp strings from their API.
+   * Convert a Facebook time string to a Tableau time string
    *
    * @param string dateString
    * @return string
    * @todo possibly not the best place for this.
    */
   getTableauTimeString (dateString) {
-    let dateParts = dateString.split('T')
+    if (dateString.includes('T') && dateString.includes('+')) {
+      let dateParts = dateString.split('T')
 
-    let timeParts = dateParts[1].split('+')
+      let timeParts = dateParts[1].split('+')
 
-    return `${dateParts[0]} ${timeParts[0]}`
+      return `${dateParts[0]} ${timeParts[0]}`
+    }
+
+    return '0000-00-00 00:00:00';
   }
 }
 
