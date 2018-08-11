@@ -1,11 +1,11 @@
 'use strict'
 
 /**
- * Define the columns that make up the Tableau posts table
+ * Define the columns that make up the Tableau posts meta table
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
-class PostColumns {
+class PostMetaColumns {
   /**
    * @param Object
    */
@@ -39,4 +39,4 @@ class PostColumns {
   }
 }
 
-export default PostColumns
+export default PostMetaColumns

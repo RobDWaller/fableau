@@ -5,7 +5,7 @@
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
-class PageColumns {
+class PostMetricColumns {
   /**
    * @param Object
    */
@@ -75,4 +75,4 @@ class PageColumns {
   }
 }
 
-export default PageColumns
+export default PostMetricColumns

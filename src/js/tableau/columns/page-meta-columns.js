@@ -1,11 +1,11 @@
 'use strict'
 
 /**
- * Define the columns that make up the Tableau pages table
+ * Define the columns that make up the Tableau pages meta table
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
-class PageColumns {
+class PageMetaColumns {
   /**
    * @param Object
    */
@@ -47,4 +47,4 @@ class PageColumns {
   }
 }
 
-export default PageColumns
+export default PageMetaColumns
