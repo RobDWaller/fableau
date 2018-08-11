@@ -8,5 +8,5 @@ test('Build post metric columns', () => {
 test('Get post metric columns', () => {
   let columns = new PostMetricColumns(dataType)
 
-  expect(columns.getColumns().length).toBe(15)
+  expect(columns.getColumns().length).toBe(13)
 })
