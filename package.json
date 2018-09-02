@@ -14,7 +14,7 @@
     "scripts": {
         "build": "webpack --mode=production",
         "dev": "webpack --mode=development",
-        "test": "jest",
+        "test": "jest --collectCoverage=false",
         "analyse": "eslint ./src/js",
         "codecov": "jest && codecov"
     },
@@ -54,7 +54,7 @@
         "verbose": true,
         "testURL": "http://localhost/",
         "coverageDirectory": "./coverage/",
-        "collectCoverage": false,
+        "collectCoverage": true,
         "collectCoverageFrom": [
             "src/js/**/*.js"
         ]
