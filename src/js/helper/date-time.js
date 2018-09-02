@@ -69,7 +69,7 @@ class DateTime {
       return `${dateParts[0]} ${timeParts[0]}`
     }
 
-    return '0000-00-00 00:00:00'
+    throw new Error('Invalid tableau date string, cannot convert date')
   }
 }
 

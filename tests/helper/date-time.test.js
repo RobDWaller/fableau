@@ -45,11 +45,11 @@ test('Get tableau time string', () => {
 test('Get tableau time string convert zero', () => {
   let date = new DateTime()
 
-  expect(date.getTableauTimeString('0')).toBe('0000-00-00 00:00:00')
+  expect(date.getTableauTimeString('0')).toThrow()
 })
 
 test('Get tableau time string convert empty', () => {
   let date = new DateTime()
 
-  expect(date.getTableauTimeString('0')).toBe('0000-00-00 00:00:00')
+  expect(date.getTableauTimeString('0')).toThrow()
 })

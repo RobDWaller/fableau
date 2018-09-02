@@ -1,5 +1,5 @@
 # [Fableau](http://fableau.io) (Beta)
-[![Build Status](https://travis-ci.org/RobDWaller/fableau.svg?branch=master)](https://travis-ci.org/RobDWaller/fableau) [![codecov](https://codecov.io/gh/RobDWaller/fableau/branch/master/graph/badge.svg)](https://codecov.io/gh/RobDWaller/fableau)
+[![Build Status](https://travis-ci.org/RobDWaller/fableau.svg?branch=master)](https://travis-ci.org/RobDWaller/fableau) [![codecov](https://codecov.io/gh/RobDWaller/fableau/branch/master/graph/badge.svg)](https://codecov.io/gh/RobDWaller/fableau) [![Maintainability](https://api.codeclimate.com/v1/badges/fae0ad4fd07fef1f8a4b/maintainability)](https://codeclimate.com/github/RobDWaller/fableau/maintainability)
 
 A Tableau Web Data Connector for Facebook that allows you to pull your Facebook post and
 page metrics data into Tableau.  
