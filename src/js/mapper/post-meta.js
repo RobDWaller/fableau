@@ -7,7 +7,7 @@ import DateTime from '../helper/date-time.js'
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
-class Post {
+class PostMeta {
   /**
    * @param array data
    * @param int pageId
@@ -55,4 +55,4 @@ class Post {
   }
 }
 
-export default Post
+export default PostMeta

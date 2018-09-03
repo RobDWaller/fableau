@@ -5,7 +5,7 @@
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
-class Page {
+class PageMeta {
   /**
    * @param array data
    */
@@ -39,4 +39,4 @@ class Page {
   }
 }
 
-export default Page
+export default PageMeta

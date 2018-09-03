@@ -5,10 +5,10 @@ import Ajax from '../helper/ajax.js'
 import FacebookPageLoop from '../service/facebook/helper/page-loop.js'
 import FacebookRequests from '../service/facebook/requests.js'
 import FacebookData from '../service/facebook/data.js'
-import PostColumns from '../tableau/columns/posts.js'
-import PageColumns from '../tableau/columns/pages.js'
-import PostMetricsColumns from '../tableau/columns/post-metrics.js'
-import PageMetricsColumns from '../tableau/columns/page-metrics.js'
+import PostMetaColumns from '../tableau/columns/post-meta-columns.js'
+import PageMetaColumns from '../tableau/columns/page-meta-columns.js'
+import PostMetricsColumns from '../tableau/columns/post-metric-columns.js'
+import PageMetricsColumns from '../tableau/columns/page-metric-columns.js'
 import TableFactory from './table-factory.js'
 
 /**
@@ -48,8 +48,8 @@ class TableauBuilder {
 
     tableauConnector.getSchema = (schemaCallback) => {
       schemaCallback([
-        tableFactory.makeTable('posts', 'Posts Meta Data', new PostColumns(this.tableau.dataTypeEnum)).getTable(),
-        tableFactory.makeTable('pages', 'Pages Meta Data', new PageColumns(this.tableau.dataTypeEnum)).getTable(),
+        tableFactory.makeTable('posts', 'Posts Meta Data', new PostMetaColumns(this.tableau.dataTypeEnum)).getTable(),
+        tableFactory.makeTable('pages', 'Pages Meta Data', new PageMetaColumns(this.tableau.dataTypeEnum)).getTable(),
         tableFactory.makeTable('post_metrics', 'Posts Metric Data', new PostMetricsColumns(this.tableau.dataTypeEnum)).getTable(),
         tableFactory.makeTable('page_metrics', 'Pages Metric Data', new PageMetricsColumns(this.tableau.dataTypeEnum)).getTable()
       ])

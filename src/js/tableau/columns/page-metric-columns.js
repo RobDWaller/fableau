@@ -5,7 +5,7 @@
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
-class PageImpressionColumns {
+class PageMetricColumns {
   /**
    * @param Object
    */
@@ -247,4 +247,4 @@ class PageImpressionColumns {
   }
 }
 
-export default PageImpressionColumns
+export default PageMetricColumns
