@@ -45,11 +45,11 @@ test('Get tableau time string', () => {
 test('Get tableau time string convert zero', () => {
   let date = new DateTime()
 
-  expect(() => {date.getTableauTimeString('0')}).toThrow()
+  expect(() => {date.getTableauTimeString('0')}).toThrowError('Invalid Facebook date string')
 })
 
 test('Get tableau time string convert empty', () => {
   let date = new DateTime()
 
-  expect(() => {date.getTableauTimeString('')}).toThrow()
+  expect(() => {date.getTableauTimeString('')}).toThrowError('Invalid Facebook date string')
 })
