@@ -69,7 +69,7 @@ class DateTime {
       return `${dateParts[0]} ${timeParts[0]}`
     }
 
-    throw new Error('Invalid tableau date string, cannot convert date')
+    throw new Error('Invalid Facebook date string [' + dateString + '], cannot convert')
   }
 }
 
